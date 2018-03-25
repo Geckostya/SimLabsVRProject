@@ -79,5 +79,5 @@ SimLabsVR/DerivedDataCache/*
 # Media files
 *.mp4
 
-!SimLabsVR/Plugins/*/Resources
-!SimLabsVR/Plugins/*/Source
+!SimLabsVR/Plugins/*/Resources/**
+!SimLabsVR/Plugins/*/Source/**
