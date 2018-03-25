@@ -1,0 +1,4 @@
+C:\SRW\SimLabsVRProject\SimLabsVR\Source\SimLabsVR\SimLabsVR.Build.cs
+C:\SRW\SimLabsVRProject\SimLabsVR\Plugins\WebSocket\Source\WebSocket\WebSocket.Build.cs
+C:\SRW\SimLabsVRProject\SimLabsVR\Source\SimLabsVR.Target.cs
+C:\SRW\SimLabsVRProject\SimLabsVR\Source\SimLabsVREditor.Target.cs

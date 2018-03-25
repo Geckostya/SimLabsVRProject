@@ -1,0 +1,441 @@
+﻿Log file open, 03/25/18 15:06:58
+LogWindows: Failed to load 'aqProf.dll' (GetLastError=126)
+LogWindows: File 'aqProf.dll' does not exist
+LogWindows: Failed to load 'VSPerf140.dll' (GetLastError=126)
+LogWindows: File 'VSPerf140.dll' does not exist
+LogWindows: Failed to load 'VtuneApi.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi.dll' does not exist
+LogWindows: Failed to load 'VtuneApi32e.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi32e.dll' does not exist
+LogInit: Display: Running engine for game: SimLabsVR
+LogPlatformFile: Not using cached read wrapper
+LogInit: Display: RandInit(-33661113) SRandInit(-33661113).
+LogTaskGraph: Started task graph with 5 named threads and 11 total threads with 3 sets of task threads.
+LogStats: Stats thread started at 0.178527
+LogD3D11RHI: Aftermath initialized
+LogPluginManager: Mounting plugin LightPropagationVolume
+LogPluginManager: Mounting plugin GitSourceControl
+LogPluginManager: Mounting plugin KDevelopSourceCodeAccess
+LogPluginManager: Mounting plugin UObjectPlugin
+LogPluginManager: Mounting plugin VisualStudioSourceCodeAccess
+LogPluginManager: Mounting plugin XCodeSourceCodeAccess
+LogPluginManager: Mounting plugin AssetManagerEditor
+LogPluginManager: Mounting plugin FacialAnimation
+LogPluginManager: Mounting plugin GameplayTagsEditor
+LogPluginManager: Mounting plugin MobileLauncherProfileWizard
+LogPluginManager: Mounting plugin PluginBrowser
+LogPluginManager: Mounting plugin AlembicImporter
+LogPluginManager: Mounting plugin CharacterAI
+LogPluginManager: Mounting plugin HTML5Networking
+LogPluginManager: Mounting plugin OSVR
+LogPluginManager: Mounting plugin AndroidMedia
+LogPluginManager: Mounting plugin AvfMedia
+LogPluginManager: Mounting plugin MediaPlayerEditor
+LogPluginManager: Mounting plugin MfMedia
+LogPluginManager: Mounting plugin WmfMedia
+LogPluginManager: Mounting plugin TcpMessaging
+LogPluginManager: Mounting plugin UdpMessaging
+LogPluginManager: Mounting plugin LevelSequenceEditor
+LogPluginManager: Mounting plugin MatineeToLevelSequence
+LogPluginManager: Mounting plugin OnlineSubsystemGooglePlay
+LogPluginManager: Mounting plugin OnlineSubsystemIOS
+LogPluginManager: Mounting plugin OnlineSubsystem
+LogPluginManager: Mounting plugin OnlineSubsystemNull
+LogPluginManager: Mounting plugin OnlineSubsystemUtils
+LogPluginManager: Mounting plugin AndroidDeviceProfileSelector
+LogPluginManager: Mounting plugin AndroidMoviePlayer
+LogPluginManager: Mounting plugin AndroidPermission
+LogPluginManager: Mounting plugin AppleMoviePlayer
+LogPluginManager: Mounting plugin ArchVisCharacter
+LogPluginManager: Mounting plugin CableComponent
+LogPluginManager: Mounting plugin CustomMeshComponent
+LogPluginManager: Mounting plugin ExampleDeviceProfileSelector
+LogPluginManager: Mounting plugin GoogleCloudMessaging
+LogPluginManager: Mounting plugin GoogleVRHMD
+LogPluginManager: Mounting plugin ImmediatePhysics
+LogPluginManager: Mounting plugin MobilePatchingUtils
+LogPluginManager: Mounting plugin OptionalMobileFeaturesBPLibrary
+LogPluginManager: Mounting plugin PhysXVehicles
+LogPluginManager: Mounting plugin ProceduralMeshComponent
+LogPluginManager: Mounting plugin RuntimePhysXCooking
+LogPluginManager: Mounting plugin WindowsMoviePlayer
+LogPluginManager: Mounting plugin WebSocket
+LogInit: Using libcurl 7.47.1
+LogInit:  - built for x86_64-pc-win32
+LogInit:  - supports SSL with OpenSSL/1.0.2g
+LogInit:  - supports HTTP deflate (compression) using libz 1.2.8
+LogInit:  - other features:
+LogInit:      CURL_VERSION_SSL
+LogInit:      CURL_VERSION_LIBZ
+LogInit:      CURL_VERSION_IPV6
+LogInit:      CURL_VERSION_ASYNCHDNS
+LogInit:      CURL_VERSION_LARGEFILE
+LogInit:      CURL_VERSION_IDN
+LogInit:  CurlRequestOptions (configurable via config and command line):
+LogInit:  - bVerifyPeer = false  - Libcurl will NOT verify peer certificate
+LogInit:  - bUseHttpProxy = false  - Libcurl will NOT use HTTP proxy
+LogInit:  - bDontReuseConnections = false  - Libcurl will reuse connections
+LogInit:  - CertBundlePath = nullptr  - Libcurl will use whatever was configured at build time.
+LogInit: Build: ++UE4+Release-4.17-CL-3658906
+LogInit: Engine Version: 4.17.2-3658906+++UE4+Release-4.17
+LogInit: Compatible Engine Version: 4.17.0-3573198+++UE4+Release-4.17
+LogInit: Net CL: 3573198
+LogDevObjectVersion: Number of dev versions registered: 16
+LogDevObjectVersion:   Dev-Blueprints (B0D832E4-1F89-4F0D-ACCF-7EB736FD4AA2): 10
+LogDevObjectVersion:   Dev-Build (E1C64328-A22C-4D53-A36C-8E866417BD8C): 0
+LogDevObjectVersion:   Dev-Core (375EC13C-06E4-48FB-B500-84F0262A717E): 2
+LogDevObjectVersion:   Dev-Editor (E4B068ED-F494-42E9-A231-DA0B2E46BB41): 20
+LogDevObjectVersion:   Dev-Framework (CFFC743F-43B0-4480-9391-14DF171D2073): 28
+LogDevObjectVersion:   Dev-Mobile (B02B49B5-BB20-44E9-A304-32B752E40360): 0
+LogDevObjectVersion:   Dev-Networking (A4E4105C-59A1-49B5-A7C5-40C4547EDFEE): 0
+LogDevObjectVersion:   Dev-Online (39C831C9-5AE6-47DC-9A44-9C173E1C8E7C): 0
+LogDevObjectVersion:   Dev-Physics (78F01B33-EBEA-4F98-B9B4-84EACCB95AA2): 0
+LogDevObjectVersion:   Dev-Platform (6631380F-2D4D-43E0-8009-CF276956A95A): 0
+LogDevObjectVersion:   Dev-Rendering (12F88B9F-8875-4AFC-A67C-D90C383ABD29): 19
+LogDevObjectVersion:   Dev-Sequencer (7B5AE74C-D270-4C10-A958-57980B212A5A): 4
+LogDevObjectVersion:   Dev-VR (D7296918-1DD6-4BDD-9DE2-64A83CC13884): 0
+LogDevObjectVersion:   Dev-LoadTimes (C2A15278-BFE7-4AFE-6C17-90FF531DF755): 1
+LogDevObjectVersion:   Private-Geometry (6EACA3D4-40EC-4CC1-B786-8BED09428FC5): 1
+LogDevObjectVersion:   Dev-AnimPhys (29E575DD-E0A3-4627-9D10-D276232CDCEA): 7
+LogInit: Compiled (64-bit): Sep 22 2017 13:47:16
+LogInit: Compiled with Visual C++: 19.00.24215.01
+LogInit: Build Configuration: Development
+LogInit: Branch Name: ++UE4+Release-4.17
+LogInit: Command line:  
+LogInit: Base directory: C:/Program Files/Epic Games/UE_4.17/Engine/Binaries/Win64/
+LogInit: Installed Engine Build: 1
+LogInit: Presizing for max 8388607 objects, including 0 objects not considered by GC, pre-allocating 0 bytes for permanent pool.
+LogInit: Object subsystem initialized
+[2018.03.25-12.06.59:441][  0]LogInit: Selected Device Profile: [Windows]
+[2018.03.25-12.06.59:441][  0]LogInit: Applying CVar settings loaded from the selected device profile: [Windows]
+[2018.03.25-12.06.59:454][  0]LogInit: Computer: GLADOS
+[2018.03.25-12.06.59:454][  0]LogInit: User: Константин
+[2018.03.25-12.06.59:454][  0]LogInit: CPU Page size=4096, Cores=3
+[2018.03.25-12.06.59:454][  0]LogInit: High frequency timer resolution =3.237255 MHz
+[2018.03.25-12.06.59:454][  0]LogMemory: Memory total: Physical=8.0GB (8GB approx)
+[2018.03.25-12.06.59:454][  0]LogMemory: Platform Memory Stats for Windows
+[2018.03.25-12.06.59:454][  0]LogMemory: Process Physical Memory: 279.38 MB used, 279.38 MB peak
+[2018.03.25-12.06.59:454][  0]LogMemory: Process Virtual Memory: 284.61 MB used, 284.61 MB peak
+[2018.03.25-12.06.59:454][  0]LogMemory: Physical Memory: 3352.04 MB used,  4822.08 MB free, 8174.12 MB total
+[2018.03.25-12.06.59:455][  0]LogMemory: Virtual Memory: 659.98 MB used,  4822.08 MB free, 8388608.00 MB total
+[2018.03.25-12.06.59:705][  0]LogInit: Using OS detected language (en-GB).
+[2018.03.25-12.06.59:705][  0]LogInit: Using OS detected locale (en-GB).
+[2018.03.25-12.06.59:708][  0]LogTextLocalizationManager: No specific localization for 'en-GB' exists, so the 'en' localization will be used.
+[2018.03.25-12.07.00:655][  0]LogD3D11RHI: D3D11 adapters:
+[2018.03.25-12.07.00:667][  0]LogD3D11RHI:    0. 'AMD Radeon HD 7700 Series' (Feature Level 11_0)
+[2018.03.25-12.07.00:667][  0]LogD3D11RHI:       1002/0/3831 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:1, VendorId:0x1002
+[2018.03.25-12.07.00:667][  0]LogD3D11RHI: Chosen D3D11 Adapter: 0
+[2018.03.25-12.07.00:674][  0]LogD3D11RHI: Creating new Direct3DDevice
+[2018.03.25-12.07.00:675][  0]LogD3D11RHI:     GPU DeviceId: 0x683d (for the marketing name, search the web for "GPU Device Id")
+[2018.03.25-12.07.00:675][  0]LogWindows: EnumDisplayDevices:
+[2018.03.25-12.07.00:675][  0]LogWindows:    0. 'AMD Radeon HD 7700 Series' (P:1 D:1)
+[2018.03.25-12.07.00:675][  0]LogWindows:    1. 'AMD Radeon HD 7700 Series' (P:0 D:0)
+[2018.03.25-12.07.00:675][  0]LogWindows:    2. 'AMD Radeon HD 7700 Series' (P:0 D:0)
+[2018.03.25-12.07.00:676][  0]LogWindows:    3. 'AMD Radeon HD 7700 Series' (P:0 D:0)
+[2018.03.25-12.07.00:676][  0]LogWindows:    4. 'AMD Radeon HD 7700 Series' (P:0 D:0)
+[2018.03.25-12.07.00:676][  0]LogWindows:    5. 'AMD Radeon HD 7700 Series' (P:0 D:0)
+[2018.03.25-12.07.00:677][  0]LogWindows:    6. 'RDPDD Chained DD' (P:0 D:0)
+[2018.03.25-12.07.00:677][  0]LogWindows:    7. 'RDP Encoder Mirror Driver' (P:0 D:0)
+[2018.03.25-12.07.00:677][  0]LogWindows:    8. 'RDP Reflector Display Driver' (P:0 D:0)
+[2018.03.25-12.07.00:677][  0]LogWindows: DebugString: GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter GetVideoDriverDetailsInvalid PrimaryIsNotTheChoosenAdapter FoundDriverCount:6 
+[2018.03.25-12.07.00:677][  0]LogD3D11RHI:     Adapter Name: AMD Radeon HD 7700 Series
+[2018.03.25-12.07.00:677][  0]LogD3D11RHI:   Driver Version: Crimson 16.11.3 (internal:21.19.160.769, unified:21.19.160.769)
+[2018.03.25-12.07.00:677][  0]LogD3D11RHI:      Driver Date: 11-8-2016
+[2018.03.25-12.07.00:677][  0]LogRHI: Texture pool is 701 MB (70% of 1002 MB)
+[2018.03.25-12.07.00:717][  0]LogD3D11RHI: Async texture creation enabled
+[2018.03.25-12.07.00:731][  0]LogD3D11RHI: GPU Timing Frequency: 27.000000 (Debug: 2 1)
+[2018.03.25-12.07.00:731][  0]LogShaderCompilers: Guid format shader working directory is 3 characters bigger than the processId version (../../../../../../SRW/SimLabsVRProject/SimLabsVR/Intermediate/Shaders/WorkingDirectory/3112/).
+[2018.03.25-12.07.00:731][  0]LogShaderCompilers: Cleaned the shader compiler working directory 'C:/Users/Константин/AppData/Local/Temp/UnrealShaderWorkingDir/8AC3874749C942C08C38FE841BCD9CC3/'.
+[2018.03.25-12.07.00:731][  0]LogShaderCompilers: Display: Using Local Shader Compiler.
+[2018.03.25-12.07.02:214][  0]LogTemp: Display: Loaded TP AllDesktopTargetPlatform
+[2018.03.25-12.07.02:300][  0]LogTemp: Display: Loaded TP MacClientTargetPlatform
+[2018.03.25-12.07.02:386][  0]LogTemp: Display: Loaded TP MacNoEditorTargetPlatform
+[2018.03.25-12.07.02:472][  0]LogTemp: Display: Loaded TP MacServerTargetPlatform
+[2018.03.25-12.07.02:558][  0]LogTemp: Display: Loaded TP MacTargetPlatform
+[2018.03.25-12.07.02:645][  0]LogTemp: Display: Loaded TP WindowsClientTargetPlatform
+[2018.03.25-12.07.02:730][  0]LogTemp: Display: Loaded TP WindowsNoEditorTargetPlatform
+[2018.03.25-12.07.02:816][  0]LogTemp: Display: Loaded TP WindowsServerTargetPlatform
+[2018.03.25-12.07.02:889][  0]LogTemp: Display: Loaded TP WindowsTargetPlatform
+[2018.03.25-12.07.02:974][  0]LogTemp: Display: Loaded TP AndroidTargetPlatform
+[2018.03.25-12.07.03:058][  0]LogTemp: Display: Loaded TP Android_ASTCTargetPlatform
+[2018.03.25-12.07.03:141][  0]LogTemp: Display: Loaded TP Android_ATCTargetPlatform
+[2018.03.25-12.07.03:224][  0]LogTemp: Display: Loaded TP Android_DXTTargetPlatform
+[2018.03.25-12.07.03:306][  0]LogTemp: Display: Loaded TP Android_ETC1TargetPlatform
+[2018.03.25-12.07.03:390][  0]LogTemp: Display: Loaded TP Android_ETC2TargetPlatform
+[2018.03.25-12.07.03:555][  0]LogTemp: Display: Loaded TP Android_MultiTargetPlatform
+[2018.03.25-12.07.03:555][  0]LogTemp: Display: Loaded TP Android_PVRTCTargetPlatform
+[2018.03.25-12.07.03:619][  0]LogTemp: Display: Loaded TP HTML5TargetPlatform
+[2018.03.25-12.07.03:755][  0]LogTemp: Display: Loaded TP IOSTargetPlatform
+[2018.03.25-12.07.03:804][  0]LogTemp: Display: Loaded TP TVOSTargetPlatform
+[2018.03.25-12.07.03:887][  0]LogTemp: Display: Loaded TP LinuxClientTargetPlatform
+[2018.03.25-12.07.03:971][  0]LogTemp: Display: Loaded TP LinuxNoEditorTargetPlatform
+[2018.03.25-12.07.04:055][  0]LogTemp: Display: Loaded TP LinuxServerTargetPlatform
+[2018.03.25-12.07.04:139][  0]LogTemp: Display: Loaded TP LinuxTargetPlatform
+[2018.03.25-12.07.04:139][  0]LogTargetPlatformManager: Display: Building Assets For Windows
+[2018.03.25-12.07.04:874][  0]LogDerivedDataCache: Display: Max Cache Size: 512 MB
+[2018.03.25-12.07.05:078][  0]LogDerivedDataCache: Loaded boot cache 0.20s 92MB C:/Users/Константин/AppData/Local/UnrealEngine/4.17/DerivedDataCache/Boot.ddc.
+[2018.03.25-12.07.05:078][  0]LogDerivedDataCache: Display: Loaded Boot cache: C:/Users/Константин/AppData/Local/UnrealEngine/4.17/DerivedDataCache/Boot.ddc
+[2018.03.25-12.07.05:079][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  Pak pak cache file ../../../../../../SRW/SimLabsVRProject/SimLabsVR/DerivedDataCache/DDC.ddp not found, will not use a pak cache.
+[2018.03.25-12.07.05:079][  0]LogDerivedDataCache: Unable to find inner node Pak for hierarchical cache Hierarchy.
+[2018.03.25-12.07.05:079][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  CompressedPak pak cache file ../../../../../../SRW/SimLabsVRProject/SimLabsVR/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2018.03.25-12.07.05:079][  0]LogDerivedDataCache: Unable to find inner node CompressedPak for hierarchical cache Hierarchy.
+[2018.03.25-12.07.05:108][  0]LogDerivedDataCache: Display: Pak cache opened for reading ../../../Engine/DerivedDataCache/Compressed.ddp.
+[2018.03.25-12.07.05:132][  0]LogDerivedDataCache: Using Local data cache path C:/Users/Константин/AppData/Local/UnrealEngine/Common/DerivedDataCache: Writable
+[2018.03.25-12.07.05:153][  0]LogMaterial: Verifying Global Shaders for PCD3D_SM5
+[2018.03.25-12.07.05:154][  0]LogSlate: Using Freetype 2.6.0
+[2018.03.25-12.07.05:154][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2018.03.25-12.07.05:154][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2018.03.25-12.07.05:565][  0]LogAssetRegistry: FAssetRegistry took 0.0283 seconds to start up
+[2018.03.25-12.07.05:869][  0]LogInit: Selected Device Profile: [Windows]
+[2018.03.25-12.07.05:877][  0]LogContentStreaming: Texture pool size is 0.00 MB
+[2018.03.25-12.07.06:474][  0]LogSimplygon: Simplygon DLL not present - disabling.
+[2018.03.25-12.07.06:540][  0]LogMeshReduction: Using SimplygonSwarm for distributed automatic mesh merging
+[2018.03.25-12.07.06:540][  0]LogMeshReduction: Using QuadricMeshReduction for automatic static mesh reduction
+[2018.03.25-12.07.06:540][  0]LogMeshReduction: No automatic skeletal mesh reduction module available
+[2018.03.25-12.07.06:540][  0]LogMeshReduction: No automatic mesh merging module available
+[2018.03.25-12.07.06:540][  0]LogMeshMerging: No automatic mesh merging module available
+[2018.03.25-12.07.07:130][  0]LogNetVersion: SimLabsVR , NetCL: 3573198, EngineNetVer: 2, GameNetVer: 0 (Checksum: 4142299316)
+[2018.03.25-12.07.07:382][  0]LogPackageLocalizationCache: Processed 3 localized package path(s) for 2 prioritized culture(s) in 0.027100 seconds
+[2018.03.25-12.07.07:391][  0]LogUObjectArray: 35485 objects as part of root set at end of initial load.
+[2018.03.25-12.07.07:391][  0]LogUObjectAllocator: 7460152 out of 0 bytes used by permanent object pool.
+[2018.03.25-12.07.07:391][  0]LogUObjectArray: CloseDisregardForGC: 0/0 objects in disregard for GC pool
+[2018.03.25-12.07.07:485][  0]LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
+[2018.03.25-12.07.25:042][  0]LogWindows: Failed to load '../../../Engine/Binaries/ThirdParty/OSVRClientKit/bin/Win64/osvrRenderManager.dll' (GetLastError=127)
+[2018.03.25-12.07.25:043][  0]OSVRLog: Warning: FAILED to load ../../../Engine/Binaries/ThirdParty/OSVRClientKit/bin/Win64/osvrRenderManager.dll
+[2018.03.25-12.07.36:348][  0]OSVREntryPointLog: Display: OSVR client context could not connect. Most likely the server isn't running. Treating this as if the HMD is not connected.
+[2018.03.25-12.07.36:490][  0]LogTcpMessaging: Initializing TcpMessaging bridge
+[2018.03.25-12.07.36:541][  0]LogUdpMessaging: Initializing bridge on interface 0.0.0.0:0 to multicast group 230.0.0.1:6666.
+[2018.03.25-12.07.37:394][  0]SourceControl: Source control is disabled
+[2018.03.25-12.07.38:649][  0]LogAndroidPermission: UAndroidPermissionCallbackProxy::GetInstance
+[2018.03.25-12.07.39:470][  0]LogEngine: Initializing Engine...
+[2018.03.25-12.07.39:556][  0]LogHMD: GoogleVR API created
+[2018.03.25-12.07.39:997][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: Construct from data asset -  0.000 s
+[2018.03.25-12.07.39:997][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: GameplayTagTreeChangedEvent.Broadcast -  0.000 s
+[2018.03.25-12.07.40:214][  0]LogAIModule: Creating AISystem for world Untitled
+[2018.03.25-12.07.40:232][  0]LogInit: XAudio2 using 'Line 1 (Virtual Audio Cable)' : 2 channels at 48 kHz using 16 bits per sample (channel mask 0x3)
+[2018.03.25-12.07.40:243][  0]LogInit: FAudioDevice initialized.
+[2018.03.25-12.07.40:431][  0]LogDerivedDataCache: Saved boot cache 0.19s 92MB C:/Users/Константин/AppData/Local/UnrealEngine/4.17/DerivedDataCache/Boot.ddc.
+[2018.03.25-12.07.40:473][  0]LogInit: Texture streaming: Enabled
+[2018.03.25-12.07.40:513][  0]LogMaterial: Uniform references updated for custom material expression Custom.
+[2018.03.25-12.07.40:812][  0]LogEngineSessionManager: EngineSessionManager initialized
+[2018.03.25-12.07.41:190][  0]LogInit: Transaction tracking system initialized
+[2018.03.25-12.07.41:907][  0]BlueprintLog: New page: Editor Load
+[2018.03.25-12.07.43:423][  0]LocalizationService: Localization service is disabled
+[2018.03.25-12.07.44:911][  0]LogConsoleResponse: Display: 
+[2018.03.25-12.07.45:216][  0]LogCook: Display: Max memory allowance for cook 16384mb min free memory 0mb
+[2018.03.25-12.07.45:216][  0]LogCook: Display: Mobile HDR setting 0
+[2018.03.25-12.07.45:216][  0]LogGameplayTags: Display: UGameplayTagsManager::DoneAddingNativeTags. DelegateIsBound: 0
+[2018.03.25-12.07.45:821][  0]LogFileCache: Scanning file cache for directory 'C:/SRW/SimLabsVRProject/SimLabsVR/Content/' took 0.01s
+[2018.03.25-12.07.47:228][  0]Cmd: MAP LOAD FILE="../../../../../../SRW/SimLabsVRProject/SimLabsVR/Content/Maps/EntryLevel.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=3
+[2018.03.25-12.07.47:229][  0]LightingResults: New page: Lighting Build
+[2018.03.25-12.07.47:302][  0]MapCheck: New page: Map Check
+[2018.03.25-12.07.47:302][  0]LightingResults: New page: Lighting Build
+[2018.03.25-12.07.47:729][  0]LogAIModule: Creating AISystem for world EntryLevel
+[2018.03.25-12.07.47:736][  0]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2018.03.25-12.07.47:764][  0]Cmd: MAP CHECKDEP NOCLEARLOG
+[2018.03.25-12.07.47:844][  0]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 80.226ms to complete.
+[2018.03.25-12.07.47:844][  0]LogFileHelpers: Loading map 'EntryLevel' took 0.616
+[2018.03.25-12.07.48:141][  0]LogCollectionManager: Loaded 0 collections in 0.002051 seconds
+[2018.03.25-12.07.48:274][  0]LogFileCache: Scanning file cache for directory 'C:/SRW/SimLabsVRProject/SimLabsVR/Saved/Collections/' took 0.01s
+[2018.03.25-12.07.48:274][  0]LogFileCache: Scanning file cache for directory 'C:/SRW/SimLabsVRProject/SimLabsVR/Content/Developers/Константин/Collections/' took 0.01s
+[2018.03.25-12.07.48:274][  0]LogFileCache: Scanning file cache for directory 'C:/SRW/SimLabsVRProject/SimLabsVR/Content/Collections/' took 0.01s
+[2018.03.25-12.07.48:274][  0]LogCollectionManager: Rebuilt the GUID cache for 0 collections in 0.000001 seconds
+[2018.03.25-12.07.48:292][  0]LogContentBrowser: Native class hierarchy populated in 0.0175 seconds. Added 2335 classes and 485 folders.
+[2018.03.25-12.07.48:402][  0]LogContentBrowser: Native class hierarchy updated for 'WidgetCarousel' in 0.0022 seconds. Added 0 classes and 0 folders.
+[2018.03.25-12.07.48:470][  0]LogContentBrowser: Native class hierarchy updated for 'AddContentDialog' in 0.0020 seconds. Added 0 classes and 0 folders.
+[2018.03.25-12.07.48:561][  0]LogSlate: Took 0.000364 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Regular.ttf' (155K)
+[2018.03.25-12.07.48:568][  0]LogSlate: Took 0.000282 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Bold.ttf' (160K)
+[2018.03.25-12.07.48:571][  0]LogSlate: Took 0.000198 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/FontAwesome.ttf' (139K)
+[2018.03.25-12.07.48:572][  0]LogSlate: Took 0.000136 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/DroidSansMono.ttf' (77K)
+[2018.03.25-12.07.48:775][  0]LogRenderer: Reallocating scene render targets to support 840x556 Format 10 NumSamples 1 (Frame:1).
+[2018.03.25-12.07.49:060][  0]LogContentBrowser: Native class hierarchy updated for 'HierarchicalLODOutliner' in 0.0022 seconds. Added 1 classes and 2 folders.
+[2018.03.25-12.07.49:061][  0]LogLoad: (Engine Initialization) Total time: 52.00 seconds
+[2018.03.25-12.07.49:061][  0]LogLoad: (Engine Initialization) Total Blueprint compile time: 0.00 seconds
+[2018.03.25-12.07.49:061][  0]LogExternalProfiler: No external profilers were discovered.  External profiling features will not be available.
+[2018.03.25-12.07.49:095][  0]SourceControl: On branch master
+[2018.03.25-12.07.49:095][  0]SourceControl: Your branch is up to date with 'origin/master'.
+[2018.03.25-12.07.49:095][  0]SourceControl: nothing to commit, working tree clean
+[2018.03.25-12.07.49:095][  0]LogContentStreaming: Texture pool size now 1000 MB
+[2018.03.25-12.07.49:151][  0]LogSlate: Took 0.000251 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (159K)
+[2018.03.25-12.07.49:187][  1]LogAssetRegistry: Asset discovery search completed in 43.6415 seconds
+[2018.03.25-12.07.49:191][  1]LogCollectionManager: Rebuilt the object cache for 0 collections in 0.000000 seconds (found 0 objects)
+[2018.03.25-12.07.49:191][  1]LogCollectionManager: Fixed up redirectors for 0 collections in 0.000275 seconds (updated 0 objects)
+[2018.03.25-12.07.52:950][437]LogVSAccessor: Warning: Couldn't access Visual Studio
+[2018.03.25-12.07.52:951][437]Candidate modules for hot reload:
+[2018.03.25-12.07.52:951][437]  SimLabsVR
+[2018.03.25-12.07.52:951][437]Launching UnrealBuildTool... [C:/Program Files/Epic Games/UE_4.17/Engine/Binaries/DotNET/UnrealBuildTool.exe SimLabsVR -ModuleWithSuffix SimLabsVR 3482 Win64 Development -editorrecompile -canskiplink "C:/SRW/SimLabsVRProject/SimLabsVR/SimLabsVR.uproject" ]
+[2018.03.25-12.07.52:953][437]Warning: Starting HotReload took  0.0s.
+[2018.03.25-12.08.01:393][310]CompilerResultsLog: New page: Compilation - 25 Mar 2018 18:08:01
+[2018.03.25-12.08.01:393][310]CompilerResultsLog: Compiling game modules for hot reload
+[2018.03.25-12.08.01:394][310]CompilerResultsLog: Target is up to date
+[2018.03.25-12.08.01:394][310]CompilerResultsLog: Total build time: 7.92 seconds (NoActionsToExecute executor: 0.00 seconds)
+[2018.03.25-12.08.01:395][310]LogMainFrame: MainFrame: Module compiling took 8.450 seconds
+[2018.03.25-12.08.01:452][310]LogContentBrowser: Native class hierarchy populated in 0.0210 seconds. Added 2336 classes and 487 folders.
+[2018.03.25-12.08.01:453][310]Display: HotReload took  8.5s.
+[2018.03.25-12.10.08:803][960]LogSlate: Took 0.000240 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (159K)
+[2018.03.25-12.10.08:879][960]LogSlate: Took 0.023097 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/Roboto-BoldCondensed.ttf' (158K)
+[2018.03.25-12.10.39:124][556]Running C:/Program Files/Epic Games/UE_4.17/Engine/Binaries/DotNET/UnrealBuildTool.exe  -projectfiles -project="C:/SRW/SimLabsVRProject/SimLabsVR/SimLabsVR.uproject" -game -rocket -progress
+[2018.03.25-12.10.39:426][556]Discovering modules, targets and source code for project...
+[2018.03.25-12.10.42:928][556]LogSlate: Took 0.000300 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Regular.ttf' (155K)
+[2018.03.25-12.10.44:518][556]LogVSAccessor: Warning: Couldn't access Visual Studio
+[2018.03.25-12.10.44:518][556]Candidate modules for hot reload:
+[2018.03.25-12.10.44:518][556]  SimLabsVR
+[2018.03.25-12.10.44:518][556]Launching UnrealBuildTool... [C:/Program Files/Epic Games/UE_4.17/Engine/Binaries/DotNET/UnrealBuildTool.exe SimLabsVR -ModuleWithSuffix SimLabsVR 4235 Win64 Development -editorrecompile -canskiplink "C:/SRW/SimLabsVRProject/SimLabsVR/SimLabsVR.uproject" ]
+[2018.03.25-12.11.08:043][556]CompilerResultsLog: New page: Compilation - 25 Mar 2018 18:11:08
+[2018.03.25-12.11.08:043][556]CompilerResultsLog: Compiling game modules for hot reload
+[2018.03.25-12.11.08:044][556]CompilerResultsLog: Parsing headers for SimLabsVREditor
+[2018.03.25-12.11.08:044][556]CompilerResultsLog:   Running UnrealHeaderTool "C:\SRW\SimLabsVRProject\SimLabsVR\SimLabsVR.uproject" "C:\SRW\SimLabsVRProject\SimLabsVR\Intermediate\Build\Win64\SimLabsVREditor\Development\SimLabsVREditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
+[2018.03.25-12.11.08:045][556]CompilerResultsLog: Reflection code generated for SimLabsVREditor in 12.6109444 seconds
+[2018.03.25-12.11.08:045][556]CompilerResultsLog: Performing 5 actions (3 in parallel)
+[2018.03.25-12.11.08:046][556]CompilerResultsLog: TestClass.cpp
+[2018.03.25-12.11.08:046][556]CompilerResultsLog: SimLabsVR.init.gen.cpp
+[2018.03.25-12.11.08:046][556]CompilerResultsLog: TestClass.gen.cpp
+[2018.03.25-12.11.08:046][556]CompilerResultsLog: [4/5] Link UE4Editor-SimLabsVR-4235.dll
+[2018.03.25-12.11.08:046][556]CompilerResultsLog: [5/5] Link UE4Editor-SimLabsVR-4235.lib
+[2018.03.25-12.11.08:047][556]CompilerResultsLog: 
+[2018.03.25-12.11.08:047][556]CompilerResultsLog: 
+[2018.03.25-12.11.08:047][556]CompilerResultsLog: Total build time: 23.25 seconds (Local executor: 3.12 seconds)
+[2018.03.25-12.11.08:047][556]LogMainFrame: MainFrame: Module compiling took 23.536 seconds
+[2018.03.25-12.11.08:156][556]LogClass: Could not find existing class TestClass in package /Script/SimLabsVR for HotReload, assuming new class
+[2018.03.25-12.11.08:162][556]LogContentBrowser: Native class hierarchy updated for 'SimLabsVR' in 0.0029 seconds. Added 2 classes and 2 folders.
+[2018.03.25-12.11.08:165][556]Display: HotReload successful (0 functions remapped  0 scriptstructs remapped)
+[2018.03.25-12.11.08:249][556]LogContentBrowser: Native class hierarchy populated in 0.0206 seconds. Added 2337 classes and 487 folders.
+[2018.03.25-12.11.08:249][556]Display: HotReload took 23.7s.
+[2018.03.25-12.11.08:250][556]Warning: HotReload operation took 23.7s.
+[2018.03.25-12.11.08:287][556]LogHotReload: New module detected: UE4Editor-SimLabsVR-4235.dll
+[2018.03.25-12.11.08:311][557]LogHotReload: Starting Hot-Reload from IDE
+[2018.03.25-12.11.08:514][557]LogContentBrowser: Native class hierarchy updated for 'SimLabsVR' in 0.0022 seconds. Added 2 classes and 2 folders.
+[2018.03.25-12.11.08:516][557]Display: HotReload successful (0 functions remapped  0 scriptstructs remapped)
+[2018.03.25-12.11.08:541][557]LogContentBrowser: Native class hierarchy populated in 0.0204 seconds. Added 2337 classes and 487 folders.
+[2018.03.25-12.11.08:546][557]Display: HotReload took  0.2s.
+[2018.03.25-12.11.56:839][ 19]LogVSAccessor: Warning: Couldn't goto line number '0' in 'C:/SRW/SimLabsVRProject/SimLabsVR/Source/SimLabsVR/TestClass.h'
+[2018.03.25-12.11.56:999][ 19]LogVSAccessor: Warning: Couldn't goto line number '0' in 'C:/SRW/SimLabsVRProject/SimLabsVR/Source/SimLabsVR/TestClass.cpp'
+[2018.03.25-12.14.22:577][656]Candidate modules for hot reload:
+[2018.03.25-12.14.22:578][656]  SimLabsVR
+[2018.03.25-12.14.22:578][656]Launching UnrealBuildTool... [C:/Program Files/Epic Games/UE_4.17/Engine/Binaries/DotNET/UnrealBuildTool.exe SimLabsVR -ModuleWithSuffix SimLabsVR 3004 Win64 Development -editorrecompile -canskiplink "C:/SRW/SimLabsVRProject/SimLabsVR/SimLabsVR.uproject" ]
+[2018.03.25-12.14.22:580][656]Warning: Starting HotReload took  0.0s.
+[2018.03.25-12.14.52:197][160]CompilerResultsLog: New page: Compilation - 25 Mar 2018 18:14:52
+[2018.03.25-12.14.52:197][160]CompilerResultsLog: Compiling game modules for hot reload
+[2018.03.25-12.14.52:197][160]CompilerResultsLog: Parsing headers for SimLabsVREditor
+[2018.03.25-12.14.52:198][160]CompilerResultsLog:   Running UnrealHeaderTool "C:\SRW\SimLabsVRProject\SimLabsVR\SimLabsVR.uproject" "C:\SRW\SimLabsVRProject\SimLabsVR\Intermediate\Build\Win64\SimLabsVREditor\Development\SimLabsVREditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
+[2018.03.25-12.14.52:198][160]CompilerResultsLog: Reflection code generated for SimLabsVREditor in 15.2701612 seconds
+[2018.03.25-12.14.52:198][160]CompilerResultsLog: Performing 5 actions (3 in parallel)
+[2018.03.25-12.14.52:198][160]CompilerResultsLog: SimLabsVR.init.gen.cpp
+[2018.03.25-12.14.52:199][160]CompilerResultsLog: TestClass.gen.cpp
+[2018.03.25-12.14.52:199][160]CompilerResultsLog: TestClass.cpp
+[2018.03.25-12.14.52:199][160]CompilerResultsLog: [4/5] Link UE4Editor-SimLabsVR-3004.dll
+[2018.03.25-12.14.52:199][160]CompilerResultsLog: [5/5] Link UE4Editor-SimLabsVR-3004.lib
+[2018.03.25-12.14.52:199][160]CompilerResultsLog: 
+[2018.03.25-12.14.52:199][160]CompilerResultsLog: 
+[2018.03.25-12.14.52:199][160]CompilerResultsLog: Total build time: 29.27 seconds (Local executor: 4.06 seconds)
+[2018.03.25-12.14.52:199][160]LogMainFrame: MainFrame: Module compiling took 29.636 seconds
+[2018.03.25-12.14.52:350][160]LogClass: Could not find existing class TestClass in package /Script/SimLabsVR for HotReload, assuming new class
+[2018.03.25-12.14.52:352][160]LogHotReload: Re-instancing TestClass after hot-reload.
+[2018.03.25-12.14.52:415][160]LogContentBrowser: Native class hierarchy updated for 'SimLabsVR' in 0.0021 seconds. Added 2 classes and 2 folders.
+[2018.03.25-12.14.52:417][160]Display: HotReload successful (0 functions remapped  0 scriptstructs remapped)
+[2018.03.25-12.14.52:476][160]LogContentBrowser: Native class hierarchy populated in 0.0194 seconds. Added 2337 classes and 487 folders.
+[2018.03.25-12.14.52:476][160]Display: HotReload took 29.9s.
+[2018.03.25-12.15.00:090][ 51]LogEditor: Attempting to add actor of class 'TestClass' to level at 500.00,60.00,-10.00
+[2018.03.25-12.15.00:316][ 76]LogEditor: Attempting to add actor of class 'TestClass' to level at 500.00,-110.00,-210.00
+[2018.03.25-12.15.24:977][975]Cmd: DELETE
+[2018.03.25-12.15.24:978][975]Cmd: ACTOR DELETE
+[2018.03.25-12.15.25:210][975]LogEditorActor: Deleted Actor: TestClass
+[2018.03.25-12.15.25:234][975]LogEditorActor: Deleted 1 Actors (0.038 secs)
+[2018.03.25-12.15.28:082][302]LogEditorActor: Deleted Actor: StaticMeshActor
+[2018.03.25-12.15.28:107][302]LogEditorActor: Deleted 1 Actors (0.025 secs)
+[2018.03.25-12.17.09:751][858]Candidate modules for hot reload:
+[2018.03.25-12.17.09:751][858]  SimLabsVR
+[2018.03.25-12.17.09:751][858]Launching UnrealBuildTool... [C:/Program Files/Epic Games/UE_4.17/Engine/Binaries/DotNET/UnrealBuildTool.exe SimLabsVR -ModuleWithSuffix SimLabsVR 4242 Win64 Development -editorrecompile -canskiplink "C:/SRW/SimLabsVRProject/SimLabsVR/SimLabsVR.uproject" ]
+[2018.03.25-12.17.09:753][858]Warning: Starting HotReload took  0.0s.
+[2018.03.25-12.17.38:002][ 50]CompilerResultsLog: New page: Compilation - 25 Mar 2018 18:17:38
+[2018.03.25-12.17.38:002][ 50]CompilerResultsLog: Compiling game modules for hot reload
+[2018.03.25-12.17.38:002][ 50]CompilerResultsLog: Parsing headers for SimLabsVREditor
+[2018.03.25-12.17.38:002][ 50]CompilerResultsLog:   Running UnrealHeaderTool "C:\SRW\SimLabsVRProject\SimLabsVR\SimLabsVR.uproject" "C:\SRW\SimLabsVRProject\SimLabsVR\Intermediate\Build\Win64\SimLabsVREditor\Development\SimLabsVREditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
+[2018.03.25-12.17.38:003][ 50]CompilerResultsLog: Reflection code generated for SimLabsVREditor in 15.4428072 seconds
+[2018.03.25-12.17.38:003][ 50]CompilerResultsLog: Performing 5 actions (3 in parallel)
+[2018.03.25-12.17.38:003][ 50]CompilerResultsLog: TestClass.cpp
+[2018.03.25-12.17.38:003][ 50]CompilerResultsLog: SimLabsVR.init.gen.cpp
+[2018.03.25-12.17.38:003][ 50]CompilerResultsLog: TestClass.gen.cpp
+[2018.03.25-12.17.38:004][ 50]CompilerResultsLog: [4/5] Link UE4Editor-SimLabsVR-4242.dll
+[2018.03.25-12.17.38:004][ 50]CompilerResultsLog: [5/5] Link UE4Editor-SimLabsVR-4242.lib
+[2018.03.25-12.17.38:004][ 50]CompilerResultsLog: 
+[2018.03.25-12.17.38:004][ 50]CompilerResultsLog: 
+[2018.03.25-12.17.38:004][ 50]CompilerResultsLog: Total build time: 27.92 seconds (Local executor: 3.39 seconds)
+[2018.03.25-12.17.38:004][ 50]LogMainFrame: MainFrame: Module compiling took 28.264 seconds
+[2018.03.25-12.17.38:148][ 50]LogClass: Could not find existing class TestClass in package /Script/SimLabsVR for HotReload, assuming new class
+[2018.03.25-12.17.38:152][ 50]LogHotReload: Re-instancing TestClass after hot-reload.
+[2018.03.25-12.17.38:230][ 50]LogContentBrowser: Native class hierarchy updated for 'SimLabsVR' in 0.0022 seconds. Added 2 classes and 2 folders.
+[2018.03.25-12.17.38:232][ 50]Display: HotReload successful (0 functions remapped  0 scriptstructs remapped)
+[2018.03.25-12.17.38:293][ 50]LogContentBrowser: Native class hierarchy populated in 0.0228 seconds. Added 2337 classes and 487 folders.
+[2018.03.25-12.17.38:294][ 50]Display: HotReload took 28.6s.
+[2018.03.25-12.17.52:732][731]LogEditor: Attempting to add actor of class 'TestClass' to level at 500.00,310.00,-70.00
+[2018.03.25-12.17.53:182][783]LogEditor: Attempting to add actor of class 'TestClass' to level at 500.00,180.00,-300.00
+[2018.03.25-12.17.57:031][238]Cmd: DELETE
+[2018.03.25-12.17.57:031][238]Cmd: ACTOR DELETE
+[2018.03.25-12.17.57:032][238]LogEditorActor: Deleted Actor: TestClass
+[2018.03.25-12.17.57:062][238]LogEditorActor: Deleted 1 Actors (0.031 secs)
+[2018.03.25-12.18.14:992][590]LogSlate: Took 0.000385 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (159K)
+[2018.03.25-12.18.23:790][616]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/EntryLevel" FILE="../../../../../../SRW/SimLabsVRProject/SimLabsVR/Saved/Autosaves/Game/Maps/EntryLevel_Auto1.umap" SILENT=true AUTOSAVING=true KEEPDIRTY=false
+[2018.03.25-12.18.23:983][616]LogSavePackage: Save=186.14ms
+[2018.03.25-12.18.23:983][616]LogSavePackage: Moving '../../../../../../SRW/SimLabsVRProject/SimLabsVR/Saved/EntryLevel_Auto1BA964FCB448CB34B3FB7AA8071451B90.tmp' to '../../../../../../SRW/SimLabsVRProject/SimLabsVR/Saved/Autosaves/Game/Maps/EntryLevel_Auto1.umap'
+[2018.03.25-12.18.23:985][616]LogSavePackage: Display: Finished SavePackage ../../../../../../SRW/SimLabsVRProject/SimLabsVR/Saved/Autosaves/Game/Maps/EntryLevel_Auto1.umap
+[2018.03.25-12.18.23:995][616]LogFileHelpers: Editor autosave (incl. sublevels) for '/Game/Maps/EntryLevel' took 0.325
+[2018.03.25-12.18.23:996][616]LogFileHelpers: Editor autosave (incl. sublevels) for all levels took 0.325
+[2018.03.25-12.19.16:869][130]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/EntryLevel" FILE="../../../../../../SRW/SimLabsVRProject/SimLabsVR/Content/Maps/EntryLevel.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2018.03.25-12.19.17:046][130]LogSavePackage: Save=149.39ms
+[2018.03.25-12.19.17:046][130]LogSavePackage: Moving '../../../../../../SRW/SimLabsVRProject/SimLabsVR/Saved/EntryLevel539B07F54B46C55B1912C18120E46547.tmp' to '../../../../../../SRW/SimLabsVRProject/SimLabsVR/Content/Maps/EntryLevel.umap'
+[2018.03.25-12.19.17:064][130]LogSavePackage: Display: Finished SavePackage ../../../../../../SRW/SimLabsVRProject/SimLabsVR/Content/Maps/EntryLevel.umap
+[2018.03.25-12.19.17:149][130]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Maps/EntryLevel_BuiltData" FILE="../../../../../../SRW/SimLabsVRProject/SimLabsVR/Content/Maps/EntryLevel_BuiltData.uasset" SILENT=true
+[2018.03.25-12.19.17:170][130]LogSavePackage: Save=17.19ms
+[2018.03.25-12.19.17:170][130]LogSavePackage: Moving '../../../../../../SRW/SimLabsVRProject/SimLabsVR/Saved/EntryLevel_BuiltData97F17C324663D0EE061125B903B1B4EE.tmp' to '../../../../../../SRW/SimLabsVRProject/SimLabsVR/Content/Maps/EntryLevel_BuiltData.uasset'
+[2018.03.25-12.19.17:172][130]LogSavePackage: Display: Finished SavePackage ../../../../../../SRW/SimLabsVRProject/SimLabsVR/Content/Maps/EntryLevel_BuiltData.uasset
+[2018.03.25-12.19.27:442][333]SourceControl: fatal: C:/Program Files/Epic Games/UE_4.17/Engine/Content/: 'C:/Program Files/Epic Games/UE_4.17/Engine/Content/' is outside repository
+[2018.03.25-12.19.27:577][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/DefaultLitSpriteMaterial.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/DefaultLitSpriteMaterial', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:577][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/DefaultPaperTerrainMaterial.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/DefaultPaperTerrainMaterial', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:578][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/DefaultSpriteMaterial.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/DefaultSpriteMaterial', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:578][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/DummySprite.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/DummySprite', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:579][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/DummySpriteTexture.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/DummySpriteTexture', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:579][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/MaskedLitSpriteMaterial.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/MaskedLitSpriteMaterial', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:580][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/MaskedUnlitSpriteMaterial.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/MaskedUnlitSpriteMaterial', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:580][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/OpaqueLitSpriteMaterial.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/OpaqueLitSpriteMaterial', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:581][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/OpaqueUnlitSpriteMaterial.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/OpaqueUnlitSpriteMaterial', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:582][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/TranslucentLitSpriteMaterial.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/TranslucentLitSpriteMaterial', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:582][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/TranslucentUnlitSpriteMaterial.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/TranslucentUnlitSpriteMaterial', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:583][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/PlaceholderTextures/DummySpriteTexture.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/PlaceholderTextures/DummySpriteTexture', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:584][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/2D/Paper2D/Content/PlaceholderTextures/FlatNormalMap.uasset'. Attempt result was '../../../Engine/Plugins/2D/Paper2D/Content/PlaceholderTextures/FlatNormalMap', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:584][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/Runtime/Oculus/OculusVR/Content/Materials/GearVRControllerMaterial.uasset'. Attempt result was '../../../Engine/Plugins/Runtime/Oculus/OculusVR/Content/Materials/GearVRControllerMaterial', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:585][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/Runtime/Oculus/OculusVR/Content/Meshes/GearVrController.uasset'. Attempt result was '../../../Engine/Plugins/Runtime/Oculus/OculusVR/Content/Meshes/GearVrController', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:586][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_AO.uasset'. Attempt result was '../../../Engine/Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_AO', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:586][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Color.uasset'. Attempt result was '../../../Engine/Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Color', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:587][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Normal.uasset'. Attempt result was '../../../Engine/Plugins/Runtime/Oculus/OculusVR/Content/Textures/GearVRController_Normal', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:587][333]LogFileHelpers: Warning: FilenameToLongPackageName failed to convert '../../../Engine/Plugins/Runtime/Steam/SteamVR/Content/Materials/M_DefaultDevice.uasset'. Attempt result was '../../../Engine/Plugins/Runtime/Steam/SteamVR/Content/Materials/M_DefaultDevice', but the path contains illegal characters '.'
+[2018.03.25-12.19.27:614][333]LogPackageName: Error: Illegal call to DoesPackageExist: '../../../../../../SRW/SimLabsVRProject/SimLabsVR/SimLabsVR.uproject' is not a standard unreal filename or a long path name. Reason: Path should be no less than 4 characters long.
+[2018.03.25-12.19.28:361][333]LogStats: FPlatformStackWalk::StackWalkAndDump -  0.746 s
+[2018.03.25-12.19.28:361][333]LogOutputDevice: Error: === Handled ensure: ===
+[2018.03.25-12.19.28:361][333]LogOutputDevice: Error: 
+[2018.03.25-12.19.28:361][333]LogOutputDevice: Error: Ensure condition failed: false [File:D:\Build\++UE4+Release-4.17+Compile\Sync\Engine\Source\Runtime\CoreUObject\Private\Misc\PackageName.cpp] [Line: 810]
+[2018.03.25-12.19.28:362][333]LogOutputDevice: Error: Illegal call to DoesPackageExist: '../../../../../../SRW/SimLabsVRProject/SimLabsVR/SimLabsVR.uproject' is not a standard unreal filename or a long path name. Reason: Path should be no less than 4 characters long.
+[2018.03.25-12.19.28:362][333]LogOutputDevice: Error: Stack: 
+[2018.03.25-12.19.28:362][333]LogOutputDevice: Error: UE4Editor-Core.dll!0x00000000EBA13E36
+[2018.03.25-12.19.28:362][333]LogOutputDevice: Error: UE4Editor-Core.dll!0x00000000EB79C2D2
+[2018.03.25-12.19.28:363][333]LogOutputDevice: Error: UE4Editor-Core.dll!0x00000000EB7B4746
+[2018.03.25-12.19.28:363][333]LogOutputDevice: Error: UE4Editor-CoreUObject.dll!0x00000000EB051BA5
+[2018.03.25-12.19.28:363][333]LogOutputDevice: Error: UE4Editor-SourceControl.dll!0x00000000E85E73C2
+[2018.03.25-12.19.28:363][333]LogOutputDevice: Error: UE4Editor-SourceControl.dll!0x00000000E85E7557
+[2018.03.25-12.19.28:363][333]LogOutputDevice: Error: UE4Editor-SourceControlWindows.dll!0x00000000DEA178EE
+[2018.03.25-12.19.28:363][333]LogOutputDevice: Error: UE4Editor-SourceControlWindows.dll!0x00000000DE9D3755
+[2018.03.25-12.19.28:363][333]LogOutputDevice: Error: UE4Editor-SourceControlWindows.dll!0x00000000DE9D2D2D
+[2018.03.25-12.19.28:364][333]LogOutputDevice: Error: UE4Editor-SourceControlWindows.dll!0x00000000DE9E7DD4
+[2018.03.25-12.19.28:364][333]LogOutputDevice: Error: UE4Editor-GitSourceControl.dll!0x00000000D45232F9
+[2018.03.25-12.19.28:364][333]LogOutputDevice: Error: UE4Editor-SourceControl.dll!0x00000000E85EC27C
+[2018.03.25-12.19.28:364][333]LogOutputDevice: Error: UE4Editor-UnrealEd.dll!0x00000000E507D0BF
+[2018.03.25-12.19.28:364][333]LogOutputDevice: Error: UE4Editor-UnrealEd.dll!0x00000000E590D646
+[2018.03.25-12.19.28:364][333]LogOutputDevice: Error: UE4Editor.exe!0x000000003F21534A
+[2018.03.25-12.19.28:365][333]LogOutputDevice: Error: UE4Editor.exe!0x000000003F223970
+[2018.03.25-12.19.28:365][333]LogOutputDevice: Error: UE4Editor.exe!0x000000003F2239EA
+[2018.03.25-12.19.28:365][333]LogOutputDevice: Error: UE4Editor.exe!0x000000003F2302D9
+[2018.03.25-12.19.28:365][333]LogOutputDevice: Error: UE4Editor.exe!0x000000003F231C47
+[2018.03.25-12.19.28:365][333]LogOutputDevice: Error: kernel32.dll!0x0000000077AA59CD
+[2018.03.25-12.19.28:365][333]LogOutputDevice: Error: ntdll.dll!0x0000000077BDA561
+[2018.03.25-12.19.28:365][333]LogOutputDevice: Error: 
+[2018.03.25-12.19.28:368][333]LogStats:                SubmitErrorReport -  0.000 s
