@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TestClass.h"
-
+#include <EngineGlobals.h>
+#include <Runtime/Engine/Classes/Engine/Engine.h>
 
 // Sets default values
 ATestClass::ATestClass()
@@ -15,7 +16,8 @@ ATestClass::ATestClass()
 void ATestClass::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, "debug msg from cpp!");
 }
 
 // Called every frame

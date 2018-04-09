@@ -70,7 +70,8 @@ SimLabsVR/Build/*/**
 SimLabsVR/Saved/*
 
 # Compiled source files for the engine to use
-SimLabsVR/Intermediate/*
+SimLabsVR/Intermediate
+
 SimLabsVR/Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
