@@ -1,11 +1,10 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
     defaultConfig {
-        applicationId "ru.simlabs.testapp"
         minSdkVersion 17
         targetSdkVersion 24
         versionCode 1
@@ -26,6 +25,23 @@ android {
         abortOnError false
     }
 }
+
+
+task clearJar(type: Delete) {
+    delete 'build/outputs/gradle_webstream.jar'
+}
+
+task createJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('build/outputs/')
+    include('classes.jar')
+    rename ('classes.jar', 'gradle_webstream.jar')
+}
+
+
+
+createJar.dependsOn(clearJar, build)
+
 
 targetCompatibility = '1.7'
 sourceCompatibility = '1.7'

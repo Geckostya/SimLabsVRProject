@@ -19,5 +19,11 @@ public class SimLabsVR : ModuleRules
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
 
 		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+		if (Target.Platform == UnrealTargetPlatform.Android)
+        {
+            string pluginPath = Utils.MakePathRelativeTo(ModuleDirectory, BuildConfiguration.RelativeEnginePath);
+            AdditionalPropertiesForReceipt.Add(new ReceiptProperty("AndroidPlugin", (pluginPath + "/SimLabsVR_APL.xml")));
+
+        }
 	}
 }
