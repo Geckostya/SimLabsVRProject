@@ -28,14 +28,14 @@ android {
 
 
 task clearJar(type: Delete) {
-    delete 'build/outputs/gradle_webstream.jar'
+    delete 'build/outputs/webstream.jar'
 }
 
 task createJar(type: Copy) {
     from('build/intermediates/bundles/release/')
-    into('build/outputs/')
+    into('../../SimLabsVR/Source/SimLabsVR/lib/')
     include('classes.jar')
-    rename ('classes.jar', 'gradle_webstream.jar')
+    rename ('classes.jar', 'webstream.jar')
 }
 
 

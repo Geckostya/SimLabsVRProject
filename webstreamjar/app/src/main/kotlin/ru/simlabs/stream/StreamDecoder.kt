@@ -9,13 +9,10 @@ import com.koushikdutta.async.ByteBufferList
 import ru.simlabs.stream.utils.isBeforeLollipop
 import ru.simlabs.stream.utils.isKeyFrame
 import java.nio.ByteBuffer
+import java.util.concurrent.atomic.AtomicBoolean
 
 
-class StreamDecoder(val verbose: Boolean) : Thread() {
-    var width: Int = 0
-    var height: Int = 0
-
-    private var surface: Surface? = null
+class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private var widthVal: Int, private var heightVal: Int) : Thread() {
 
     private var decoder: MediaCodec? = null
 
@@ -26,12 +23,15 @@ class StreamDecoder(val verbose: Boolean) : Thread() {
     private var startTime: Long = 0
     private var isConfigured = false
 
-    private var running: Boolean = false
+    private var running = AtomicBoolean(false)
 
-    fun resize(surface: Surface, width: Int, height: Int) {
+    val width get() = widthVal
+    val height get() = heightVal
+
+    fun resize(surface: Surface?, width: Int, height: Int) {
         this.surface = surface
-        this.width = width
-        this.height = height
+        this.widthVal = width
+        this.heightVal = height
 
         isConfigured = false
     }
@@ -79,7 +79,7 @@ class StreamDecoder(val verbose: Boolean) : Thread() {
         decoder?.stop()
         decoder?.release()
 
-        val format = MediaFormat.createVideoFormat(VIDEO_FORMAT, width, height)
+        val format = MediaFormat.createVideoFormat(VIDEO_FORMAT, widthVal, heightVal)
         format.setByteBuffer("csd-0", ByteBuffer.wrap(keyFrame))
 
         try {
@@ -90,6 +90,7 @@ class StreamDecoder(val verbose: Boolean) : Thread() {
         }
 
         decoder?.configure(format, surface, null, 0)
+        surface = null
         decoder?.start()
 
         isConfigured = true
@@ -97,8 +98,8 @@ class StreamDecoder(val verbose: Boolean) : Thread() {
     }
 
     override fun start() {
-        if (running) return
-        running = true
+        if (running.get()) return
+        running.set(true)
         super.start()
     }
 
@@ -108,12 +109,14 @@ class StreamDecoder(val verbose: Boolean) : Thread() {
         try {
             mainCycle(info)
         } finally {
-            close()
+            running.set(false)
+            decoder?.stop()
+            decoder?.release()
         }
     }
 
     private fun mainCycle(info: MediaCodec.BufferInfo) {
-        while (running) {
+        while (running.get()) {
             tryDequeue(info)
         }
     }
@@ -132,6 +135,6 @@ class StreamDecoder(val verbose: Boolean) : Thread() {
     }
 
     fun close() {
-        running = false
+        running.set(false)
     }
 }

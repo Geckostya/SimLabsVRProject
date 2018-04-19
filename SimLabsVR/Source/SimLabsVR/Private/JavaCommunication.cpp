@@ -3,6 +3,8 @@
 #include "JavaCommunication.h"
 #include "simlabsVR.h"
 
+#define PRINT(t) GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, t);
+
 #if PLATFORM_ANDROID
 	#include "../../../Core/Public/Android/AndroidApplication.h"
 	#include "../../../Launch/Public/Android/AndroidJNI.h"
@@ -15,62 +17,58 @@
 	//static jmethodID AndroidThunkJava_GetMessage; // Java function which will be called later
 #endif
 
+#if PLATFORM_ANDROID
+
+	JNI_METHOD void Java_ru_simlabs_stream_BitmapRenderer_nativeClearCachedAttributeState(JNIEnv* jenv, jobject thiz, jint PositionAttrib, jint TexCoordsAttrib)
+	{
+		//Do nothing =(
+	}
+
+	JNI_METHOD void Java_ru_simlabs_stream_UnrealConnection_printToScreen(JNIEnv* jenv, jobject thiz, jstring str)
+	{
+		const char *nativeString = jenv->GetStringUTFChars(str, JNI_FALSE);
+		FString fString(nativeString);
+		GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, fString);
+		jenv->ReleaseStringUTFChars(str, nativeString);
+	}
+#endif
+
 int AJavaCommunication::initEnvironment()
 {
 	UE_LOG(LogTemp, Warning, TEXT("BEFORE ANDROID"));
 	#if PLATFORM_ANDROID
 	//__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "### initEnvironment");
-		/*
-		// Initialise the Java environment
-		
-		if (!javaEnvironment) return JNI_ERR;
-
-		// Initialise the java method which will be called from C++
-		AndroidThunkJava_GetMessage = FJavaWrapper::FindMethod(javaEnvironment, FJavaWrapper::GameActivityClassID, "AndroidThunkJava_GetMessage", "()V", false);
-
-		// Logs
-		if (!AndroidThunkJava_GetMessage)
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, TEXT("ERROR GEngine: AndroidThunkJava_GetMessage not found"));
-			UE_LOG(LogTemp, Log, TEXT("ERROR UE_LOG: AndroidThunkJava_GetMessage not found"));
-			__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "ERROR __android_log_print: AndroidThunkJava_GetMessage not found");
-			return JNI_ERR;
-		}
-		*/
 		javaEnvironment = FAndroidApplication::GetJavaEnv();
 
-		UE_LOG(LogTemp, Warning, TEXT("FINDING JENV"));
-		if (!javaEnvironment) return JNI_ERR;
-
-		UE_LOG(LogTemp, Warning, TEXT("FOUND JENV"));
-
 		jclass testJNI_class = FAndroidApplication::FindJavaClass("ru/simlabs/stream/utils/TestJNI");
-		if (!testJNI_class)
-		{
-			UE_LOG(LogTemp, Log, TEXT("ERROR UE_LOG: TestJNI not found"));
-			//GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, TEXT("ERROR GEngine: TestJNI not found"));
-			//__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "ERROR __android_log_print: TestJNI not found");
-			return JNI_ERR;
-		}
-		//FJavaWrapper::FindMethod()
-		jmethodID constructor = javaEnvironment->GetMethodID(testJNI_class, "<init>", "()V");
-		if (!constructor)
-		{
-			UE_LOG(LogTemp, Log, TEXT("ERROR UE_LOG: constructor not found"));
-			return JNI_ERR;
-		}
-		jobject testJNI_object = javaEnvironment->NewObject(testJNI_class, constructor);
+		if (testJNI_class)
+			UE_LOG(LogTemp, Warning, TEXT("JNI Test class founded"))
+		else
+			UE_LOG(LogTemp, Warning, TEXT("JNI Test class not founded"));
+		//Do some server magic!
 
-		jmethodID getMagicNumberID = javaEnvironment->GetMethodID(testJNI_class, "getMagicNumber", "()I");
+		jclass unrealConnection = FAndroidApplication::FindJavaClass("ru/simlabs/stream/UnrealConnection");
+		if (unrealConnection)
+			UE_LOG(LogTemp, Warning, TEXT("class founded"))
+		else 
+			UE_LOG(LogTemp, Warning, TEXT("class not founded"));
 
-		jint value = javaEnvironment->CallIntMethod(testJNI_object, getMagicNumberID);
+		jmethodID constructor = javaEnvironment->GetMethodID(unrealConnection, "<init>", "()V");
+		if (constructor)
+			UE_LOG(LogTemp, Warning, TEXT("constructor founded"));
+		jobject unrealConnection_obj = javaEnvironment->NewObject(unrealConnection, constructor);
+		if (unrealConnection_obj)
+			UE_LOG(LogTemp, Warning, TEXT("object created"));
+		jmethodID connect = javaEnvironment->GetMethodID(unrealConnection, "connect", "(Ljava/lang/String;)V");
+		if (connect)
+			UE_LOG(LogTemp, Warning, TEXT("connect method is founded"));
 
-
-		GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, TEXT("Loading successful"));
-
-		GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, FString::Printf(TEXT("Magic number from kotlin: %d"), (int)value));
-		
-
+		char ip[256] = "ws://192.168.1.173";
+		jstring ipstring = javaEnvironment->NewStringUTF(ip);
+		javaEnvironment->CallVoidMethod(unrealConnection_obj, connect, ipstring);
+		UE_LOG(LogTemp, Warning, TEXT("called connect"));
+		PRINT(TEXT("End init"));
+		javaEnvironment->DeleteLocalRef(ipstring);// TODO memleak
 		return JNI_OK;
 
 	#endif
