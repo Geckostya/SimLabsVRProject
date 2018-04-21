@@ -8,7 +8,8 @@ public class SimLabsVR : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "MediaAssets", "Media"});
+		PublicDependencyModuleNames.Add("MediaAssets");
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

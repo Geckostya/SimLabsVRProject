@@ -1,7 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "JavaCommunication.h"
+#include "GameFramework/Actor.h"
 #include "simlabsVR.h"
+#include "Runtime/Engine/Classes/Engine/ObjectLibrary.h"
+#include "MediaTexture.h"
+#include "Runtime/CoreUObject/Public/UObject/ConstructorHelpers.h"
 
 #define PRINT(t) GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, t);
 
@@ -22,6 +26,7 @@
 	JNI_METHOD void Java_ru_simlabs_stream_BitmapRenderer_nativeClearCachedAttributeState(JNIEnv* jenv, jobject thiz, jint PositionAttrib, jint TexCoordsAttrib)
 	{
 		//Do nothing =(
+		PRINT(TEXT("tried to call native bitmapRenderer method"));
 	}
 
 	JNI_METHOD void Java_ru_simlabs_stream_UnrealConnection_printToScreen(JNIEnv* jenv, jobject thiz, jstring str)
@@ -32,6 +37,7 @@
 		jenv->ReleaseStringUTFChars(str, nativeString);
 	}
 #endif
+
 
 int AJavaCommunication::initEnvironment()
 {
@@ -68,7 +74,7 @@ int AJavaCommunication::initEnvironment()
 		javaEnvironment->CallVoidMethod(unrealConnection_obj, connect, ipstring);
 		UE_LOG(LogTemp, Warning, TEXT("called connect"));
 		PRINT(TEXT("End init"));
-		javaEnvironment->DeleteLocalRef(ipstring);// TODO memleak
+		javaEnvironment->DeleteLocalRef(ipstring);
 		return JNI_OK;
 
 	#endif
@@ -78,6 +84,14 @@ int AJavaCommunication::initEnvironment()
 // Sets default values
 AJavaCommunication::AJavaCommunication()
 {
+	ConstructorHelpers::FObjectFinder<UMediaTexture> mediaTexture(TEXT("/Game/Movies/cubemap_videTexture"));
+	UMediaTexture* texture = mediaTexture.Object;
+	if (!texture) {
+		UE_LOG(LogTemp, Warning, TEXT("Texture not founded"));
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("Texture founded!"));
+	}
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
