@@ -19,7 +19,7 @@ public class UnrealConnection {
         streamCommander = new StreamCommander(new Function0<StreamDecoder>() {
             @Override
             public StreamDecoder invoke() {
-                return new StreamDecoder(true, surface, 0, 0);
+                return new StreamDecoder(false, surface, 1920, 1080);
             }
         });
     }
@@ -31,8 +31,12 @@ public class UnrealConnection {
         streamCommander.connect(copiedAddress, new Function1<Boolean, Unit>() {
             @Override
             public Unit invoke(Boolean success) {
-                Log.d("UnrealConnection", "Successful connection");
-                printToScreen("Successful connection");
+                if (success) {
+                    Log.d("UnrealConnection", "Successful connection");
+                    printToScreen("Successful connection");
+                } else {
+                    Log.d("UnrealConnection", "Failed connection");
+                }
                 return Unit.INSTANCE;
             }
         });

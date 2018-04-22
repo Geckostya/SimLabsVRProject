@@ -75,7 +75,7 @@
 			if (connect)
 				UE_LOG(LogTemp, Warning, TEXT("connect method is founded"));
 
-			char ip[256] = "ws://192.168.1.173";
+			char ip[256] = "ws://192.168.1.173:9002";
 			jstring ipstring = javaEnvironment->NewStringUTF(ip);
 			javaEnvironment->CallVoidMethod(unrealConnection_obj, connect, ipstring);
 			UE_LOG(LogTemp, Warning, TEXT("called connect"));
@@ -88,7 +88,7 @@
 	return 0;
 }
 
-// Sets default values
+// Sets default values 
 AJavaCommunication::AJavaCommunication()
 {
 	static ConstructorHelpers::FObjectFinder<UMediaTexture> mediaTexture(TEXT("/Game/Movies/cubemap_videTexture.cubemap_videTexture"));
