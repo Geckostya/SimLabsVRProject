@@ -38,48 +38,50 @@
 	}
 #endif
 
-int AJavaCommunication::initEnvironment()
-{
-	UE_LOG(LogTemp, Warning, TEXT("BEFORE ANDROID"));
-	#if PLATFORM_ANDROID
-	//__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "### initEnvironment");
-		javaEnvironment = FAndroidApplication::GetJavaEnv();
+	int AJavaCommunication::initEnvironment()
+	{
+		UE_LOG(LogTemp, Warning, TEXT("BEFORE ANDROID"));
+#if PLATFORM_ANDROID
+		//__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "### initEnvironment");
+		
+		ENQUEUE_UNIQUE_RENDER_COMMAND(AndroidImageRender, {
+			javaEnvironment = FAndroidApplication::GetJavaEnv();
 
-		jclass testJNI_class = FAndroidApplication::FindJavaClass("ru/simlabs/stream/utils/TestJNI");
-		if (testJNI_class)
-			UE_LOG(LogTemp, Warning, TEXT("JNI Test class founded"))
-		else
-			UE_LOG(LogTemp, Warning, TEXT("JNI Test class not founded"));
-		//Do some server magic!
+			jclass testJNI_class = FAndroidApplication::FindJavaClass("ru/simlabs/stream/utils/TestJNI");
+			if (testJNI_class)
+				UE_LOG(LogTemp, Warning, TEXT("JNI Test class founded"))
+			else
+				UE_LOG(LogTemp, Warning, TEXT("JNI Test class not founded"));
 
-		jclass unrealConnection = FAndroidApplication::FindJavaClass("ru/simlabs/stream/UnrealConnection");
-		if (unrealConnection)
-			UE_LOG(LogTemp, Warning, TEXT("class founded"))
-		else 
-			UE_LOG(LogTemp, Warning, TEXT("class not founded"));
+			jclass unrealConnection = FAndroidApplication::FindJavaClass("ru/simlabs/stream/UnrealConnection");
+			if (unrealConnection)
+				UE_LOG(LogTemp, Warning, TEXT("class founded"))
+			else
+				UE_LOG(LogTemp, Warning, TEXT("class not founded"));
 
-		jmethodID constructor = javaEnvironment->GetMethodID(unrealConnection, "<init>", "(I)V");
-		if (constructor)
-			UE_LOG(LogTemp, Warning, TEXT("constructor founded"));
+			jmethodID constructor = javaEnvironment->GetMethodID(unrealConnection, "<init>", "(I)V");
+			if (constructor)
+				UE_LOG(LogTemp, Warning, TEXT("constructor founded"));
+			int textureResource = 0;
+			#if WITH_ENGINE
+				textureResource = *reinterpret_cast<int*>(mediaTexture->GetTextureSinkTexture()->GetNativeResource());
+			#elif
+				UE_LOG(LogTemp, Warning, TEXT("Without Engine"));
+			#endif
+			jobject unrealConnection_obj = javaEnvironment->NewObject(unrealConnection, constructor, textureResource);
+			if (unrealConnection_obj)
+				UE_LOG(LogTemp, Warning, TEXT("object created"));
+			jmethodID connect = javaEnvironment->GetMethodID(unrealConnection, "connect", "(Ljava/lang/String;)V");
+			if (connect)
+				UE_LOG(LogTemp, Warning, TEXT("connect method is founded"));
 
-		#if WITH_ENGINE
-			iTextureResource = *reinterpret_cast<int*>(mediaTexture->GetTextureSinkTexture()->GetNativeResource());
-		#elif
-			UE_LOG(LogTemp, Warning, TEXT("Without Engine"));
-		#endif
-		jobject unrealConnection_obj = javaEnvironment->NewObject(unrealConnection, constructor, iTextureResource);
-		if (unrealConnection_obj)
-			UE_LOG(LogTemp, Warning, TEXT("object created"));
-		jmethodID connect = javaEnvironment->GetMethodID(unrealConnection, "connect", "(Ljava/lang/String;)V");
-		if (connect)
-			UE_LOG(LogTemp, Warning, TEXT("connect method is founded"));
-
-		char ip[256] = "ws://192.168.1.173";
-		jstring ipstring = javaEnvironment->NewStringUTF(ip);
-		javaEnvironment->CallVoidMethod(unrealConnection_obj, connect, ipstring);
-		UE_LOG(LogTemp, Warning, TEXT("called connect"));
-		PRINT(TEXT("End init"));
-		javaEnvironment->DeleteLocalRef(ipstring);
+			char ip[256] = "ws://192.168.1.173";
+			jstring ipstring = javaEnvironment->NewStringUTF(ip);
+			javaEnvironment->CallVoidMethod(unrealConnection_obj, connect, ipstring);
+			UE_LOG(LogTemp, Warning, TEXT("called connect"));
+			PRINT(TEXT("End init"));
+			javaEnvironment->DeleteLocalRef(ipstring);
+		});
 		return JNI_OK;
 
 	#endif

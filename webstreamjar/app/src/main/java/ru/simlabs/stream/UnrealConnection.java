@@ -25,7 +25,7 @@ public class UnrealConnection {
     }
 
     public void connect(final String serverAddress) {
-        Log.d("UnrealConnection", "In func connect");
+        printToScreen("In func connect");
         String copiedAddress = serverAddress;//to prevent reference delete
         printToScreen(serverAddress);
         streamCommander.connect(copiedAddress, new Function1<Boolean, Unit>() {
