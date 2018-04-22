@@ -59,10 +59,10 @@ int AJavaCommunication::initEnvironment()
 		else 
 			UE_LOG(LogTemp, Warning, TEXT("class not founded"));
 
-		jmethodID constructor = javaEnvironment->GetMethodID(unrealConnection, "<init>", "()V");
+		jmethodID constructor = javaEnvironment->GetMethodID(unrealConnection, "<init>", "(I)V");
 		if (constructor)
 			UE_LOG(LogTemp, Warning, TEXT("constructor founded"));
-		jobject unrealConnection_obj = javaEnvironment->NewObject(unrealConnection, constructor);
+		jobject unrealConnection_obj = javaEnvironment->NewObject(unrealConnection, constructor, iTextureResource);
 		if (unrealConnection_obj)
 			UE_LOG(LogTemp, Warning, TEXT("object created"));
 		jmethodID connect = javaEnvironment->GetMethodID(unrealConnection, "connect", "(Ljava/lang/String;)V");
@@ -85,12 +85,17 @@ int AJavaCommunication::initEnvironment()
 AJavaCommunication::AJavaCommunication()
 {
 	ConstructorHelpers::FObjectFinder<UMediaTexture> mediaTexture(TEXT("/Game/Movies/cubemap_videTexture"));
-	UMediaTexture* texture = mediaTexture.Object;
-	if (!texture) {
-		UE_LOG(LogTemp, Warning, TEXT("Texture not founded"));
+	if (mediaTexture.Succeeded()) {
+		UE_LOG(LogTemp, Warning, TEXT("Texture founded!"));
+		UMediaTexture* texture = dynamic_cast<UMediaTexture*>(mediaTexture.Object);
+		if (!texture) {
+			UE_LOG(LogTemp, Warning, TEXT("Everything is bad!"));
+		} else {
+			//UE_LOG(LogTemp, Warning, TEXT("Everything is good! %s"), texture->GetName());
+		}
 	}
 	else {
-		UE_LOG(LogTemp, Warning, TEXT("Texture founded!"));
+		UE_LOG(LogTemp, Warning, TEXT("Texture not founded"));
 	}
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;

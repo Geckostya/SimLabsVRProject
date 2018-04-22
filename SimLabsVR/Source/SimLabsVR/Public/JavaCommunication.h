@@ -9,6 +9,9 @@ UCLASS()
 class SIMLABSVR_API AJavaCommunication : public AActor
 {
 	GENERATED_BODY()
+
+private:
+	int iTextureResource = 0;
 	
 public:	
 	// Sets default values for this actor's properties

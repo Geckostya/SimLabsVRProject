@@ -11,9 +11,9 @@ public class UnrealConnection {
 
     public native void printToScreen(String text);
 
-    public UnrealConnection() {
+    public UnrealConnection(int textureDest) {
         BitmapRenderer btmRenderer = new BitmapRenderer(false);
-        btmRenderer.updateFrameData();
+        btmRenderer.updateFrameData(textureDest);
         final Surface surface = btmRenderer.getSurface();
 
         streamCommander = new StreamCommander(new Function0<StreamDecoder>() {
