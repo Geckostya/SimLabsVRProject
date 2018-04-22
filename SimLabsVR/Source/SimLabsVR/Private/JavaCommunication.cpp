@@ -3,6 +3,7 @@
 #include "JavaCommunication.h"
 #include "GameFramework/Actor.h"
 #include "simlabsVR.h"
+#include "Engine.h"
 #include "Runtime/Engine/Classes/Engine/ObjectLibrary.h"
 #include "MediaTexture.h"
 #include "Runtime/CoreUObject/Public/UObject/ConstructorHelpers.h"
@@ -16,9 +17,8 @@
 
 	#define LOG_TAG "MY_LOG" // Used to print log with __android_log_print
 
-	//int jniValue = 0; // We will increment it later to check if the Java communication worked
 	JNIEnv* javaEnvironment = NULL; // Will contain JNI when initialized
-	//static jmethodID AndroidThunkJava_GetMessage; // Java function which will be called later
+	UMediaTexture* mediaTexture;
 #endif
 
 #if PLATFORM_ANDROID
@@ -37,7 +37,6 @@
 		jenv->ReleaseStringUTFChars(str, nativeString);
 	}
 #endif
-
 
 int AJavaCommunication::initEnvironment()
 {
@@ -62,6 +61,12 @@ int AJavaCommunication::initEnvironment()
 		jmethodID constructor = javaEnvironment->GetMethodID(unrealConnection, "<init>", "(I)V");
 		if (constructor)
 			UE_LOG(LogTemp, Warning, TEXT("constructor founded"));
+
+		#if WITH_ENGINE
+			iTextureResource = *reinterpret_cast<int*>(mediaTexture->GetTextureSinkTexture()->GetNativeResource());
+		#elif
+			UE_LOG(LogTemp, Warning, TEXT("Without Engine"));
+		#endif
 		jobject unrealConnection_obj = javaEnvironment->NewObject(unrealConnection, constructor, iTextureResource);
 		if (unrealConnection_obj)
 			UE_LOG(LogTemp, Warning, TEXT("object created"));
@@ -84,18 +89,17 @@ int AJavaCommunication::initEnvironment()
 // Sets default values
 AJavaCommunication::AJavaCommunication()
 {
-	ConstructorHelpers::FObjectFinder<UMediaTexture> mediaTexture(TEXT("/Game/Movies/cubemap_videTexture"));
+	static ConstructorHelpers::FObjectFinder<UMediaTexture> mediaTexture(TEXT("/Game/Movies/cubemap_videTexture.cubemap_videTexture"));
 	if (mediaTexture.Succeeded()) {
 		UE_LOG(LogTemp, Warning, TEXT("Texture founded!"));
-		UMediaTexture* texture = dynamic_cast<UMediaTexture*>(mediaTexture.Object);
+		UMediaTexture* texture = mediaTexture.Object;
 		if (!texture) {
 			UE_LOG(LogTemp, Warning, TEXT("Everything is bad!"));
 		} else {
-			//UE_LOG(LogTemp, Warning, TEXT("Everything is good! %s"), texture->GetName());
+			#if PLATFORM_ANDROID
+				::mediaTexture = texture;
+			#endif
 		}
-	}
-	else {
-		UE_LOG(LogTemp, Warning, TEXT("Texture not founded"));
 	}
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -113,32 +117,4 @@ void AJavaCommunication::BeginPlay()
 void AJavaCommunication::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	/*
-	#if PLATFORM_ANDROID
-	__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "### Tick");
-
-		// If our environment and java method has been loaded
-		if (AndroidThunkJava_GetMessage && javaEnvironment) {
-			__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "### AndroidThunkJava_GetMessage && javaEnvironment loaded");
-
-			// Call our java method in the xml file
-			FJavaWrapper::CallVoidMethod(javaEnvironment, FJavaWrapper::GameActivityThis, AndroidThunkJava_GetMessage);
-
-			// Will only print a value if our JNI worked
-			if (jniValue > 0 && jniValue < 10)
-				GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Red, FString::FromInt(jniValue));
-		}
-		else
-			__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "### AndroidThunkJava_GetMessage && javaEnvironment NOT loaded !");
-	#endif
-	*/
 }
-
-// #if PLATFORM_ANDROID
-// extern "C" bool Java_com_epicgames_ue4_GameActivity_GetJNIData(JNIEnv* LocalJNIEnv, jobject LocalThiz, jint data)
-// {
-// 	jniValue += data; // data will contain 1
-// 	return JNI_TRUE;
-// }
-// #endif
