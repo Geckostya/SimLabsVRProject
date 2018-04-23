@@ -42,7 +42,7 @@
 	{
 		UE_LOG(LogTemp, Warning, TEXT("BEFORE ANDROID"));
 #if PLATFORM_ANDROID
-		//__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "### initEnvironment");
+		//__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "### initEnvironment");  
 		
 		ENQUEUE_UNIQUE_RENDER_COMMAND(AndroidImageRender, {
 			javaEnvironment = FAndroidApplication::GetJavaEnv();
@@ -59,7 +59,7 @@
 			else
 				UE_LOG(LogTemp, Warning, TEXT("class not founded"));
 
-			jmethodID constructor = javaEnvironment->GetMethodID(unrealConnection, "<init>", "(I)V");
+			jmethodID constructor = javaEnvironment->GetMethodID(unrealConnection, "<init>", "(III)V");
 			if (constructor)
 				UE_LOG(LogTemp, Warning, TEXT("constructor founded"));
 			int textureResource = 0;
@@ -68,7 +68,9 @@
 			#elif
 				UE_LOG(LogTemp, Warning, TEXT("Without Engine"));
 			#endif
-			jobject unrealConnection_obj = javaEnvironment->NewObject(unrealConnection, constructor, textureResource);
+			jobject unrealConnection_obj = javaEnvironment->NewObject(
+				unrealConnection, constructor, textureResource, mediaTexture->GetWidth(), mediaTexture->GetHeight()
+			);
 			if (unrealConnection_obj)
 				UE_LOG(LogTemp, Warning, TEXT("object created"));
 			jmethodID connect = javaEnvironment->GetMethodID(unrealConnection, "connect", "(Ljava/lang/String;)V");
@@ -83,7 +85,6 @@
 			javaEnvironment->DeleteLocalRef(ipstring);
 		});
 		return JNI_OK;
-
 	#endif
 	return 0;
 }

@@ -98,6 +98,7 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
     }
 
     override fun start() {
+        Log.d(NAME, "Decoder start");
         if (running.get()) return
         running.set(true)
         super.start()

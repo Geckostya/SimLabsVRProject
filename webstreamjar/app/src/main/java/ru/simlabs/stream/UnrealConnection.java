@@ -11,7 +11,7 @@ public class UnrealConnection {
 
     public native void printToScreen(String text);
 
-    public UnrealConnection(int textureDest) {
+    public UnrealConnection(int textureDest, final int weight, final int height) {
         BitmapRenderer btmRenderer = new BitmapRenderer(false);
         btmRenderer.updateFrameData(textureDest);
         final Surface surface = btmRenderer.getSurface();
@@ -19,7 +19,7 @@ public class UnrealConnection {
         streamCommander = new StreamCommander(new Function0<StreamDecoder>() {
             @Override
             public StreamDecoder invoke() {
-                return new StreamDecoder(false, surface, 1920, 1080);
+                return new StreamDecoder(false, surface, weight, height);
             }
         });
     }
@@ -42,4 +42,7 @@ public class UnrealConnection {
         });
     }
 
+    public void disconnect() {
+        streamCommander.disconnect();
+    }
 }

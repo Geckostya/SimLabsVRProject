@@ -14,6 +14,7 @@ fun Boolean.toInt() = if(this) 1 else 0
 class StreamCommander constructor(fact: () -> StreamDecoder) {
     private val decoderFactory: () -> StreamDecoder = fact
     private var streamDecoder : StreamDecoder? = null
+    private val NAME = "Stream Commander"
     private var isStreamConnected = false
 
     private var webSocket: WebSocket? = null
@@ -29,12 +30,14 @@ class StreamCommander constructor(fact: () -> StreamDecoder) {
 //    }
 
     fun connect(address: String, onConnectionResult: (Boolean) -> Unit) {
+        Log.d(NAME, "I'm in the connect")
         if (isStreamConnected) return
+        Log.d(NAME, "I'm still in the connect")
 
         AsyncHttpClient.getDefaultInstance().websocket(address, null,
                 { exception, webSocket ->
                     if (exception != null) {
-                        Log.e("Stream Commander", exception.toString())
+                        Log.e(NAME, exception.toString())
                         onConnectionResult(false)
                         return@websocket
                     }
@@ -43,7 +46,10 @@ class StreamCommander constructor(fact: () -> StreamDecoder) {
                     isStreamConnected = true
                     streamDecoder = decoderFactory()
 
+                    Log.d(NAME, "I'm here! Look at me!")
+
                     webSocket.setStringCallback({ msg ->
+                        Log.d(NAME, "in string callback")
                         val list = msg.split(" ")
                         if (!list.isEmpty()) {
                             val head = Command.values()[parseInt(list[0])]
@@ -54,14 +60,16 @@ class StreamCommander constructor(fact: () -> StreamDecoder) {
                     })
 
                     webSocket.setDataCallback { _, byteBufferList ->
+                        Log.d(NAME, "in data callback")
                         if (byteBufferList.isEmpty)
                             return@setDataCallback
-
+                        Log.d(NAME, "byteBufferList is not empty")
                         streamDecoder?.encodeNextFrame(byteBufferList)
                         byteBufferList.recycle()
                     }
 
                     streamDecoder?.start()
+                    Log.d(NAME, "I need to start a 'start'! Decoder != null is" + (streamDecoder != null))
 
                     webSocket.send("${Command.SET_CLIENT_TYPE.ordinal} ${ClientType.RawH264.ordinal}")
                     webSocket.send("${Command.SET_CLIENT_LIMITATIONS.ordinal} 1280 720 45")
