@@ -68,7 +68,7 @@ class StreamCommander constructor(fact: () -> StreamDecoder, unrealConnect: Unre
                         Log.d(NAME, "byteBufferList is not empty")
                         unrealConnection.putBytes(byteBufferList)
 //                        streamDecoder?.encodeNextFrame(byteBufferList)
-//                        byteBufferList.recycle()
+                        byteBufferList.recycle()
                     }
 
                     streamDecoder?.start()

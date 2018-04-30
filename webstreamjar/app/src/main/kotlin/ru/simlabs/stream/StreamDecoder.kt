@@ -36,8 +36,8 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
         isConfigured = false
     }
 
-    fun encodeNextFrame(byteBuffer: ByteBufferList) {
-        val bytes = byteBuffer.allByteArray
+    fun encodeNextFrame(bytes: ByteArray) {
+        //val bytes = byteBuffer.allByteArray
         if (!verbose) Log.d(NAME, "Accepted: ${bytes.size}")
         if (bytes.size < 5) return
         if (!isConfigured && isKeyFrame(bytes)) return configureDecoder(bytes)

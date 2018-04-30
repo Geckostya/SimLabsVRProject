@@ -17,7 +17,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class UnrealConnection {
     private StreamCommander streamCommander;
     @NotNull
-    private List<ByteBufferList> listOfByteBufferList = new LinkedList<>();
+    private List<byte[]> listOfByteBufferList = new LinkedList<>();
     private Lock lock = new ReentrantLock();
 
     public native void printToScreen(String text);
@@ -60,16 +60,16 @@ public class UnrealConnection {
             return;
         }
         lock.lock();
-            List<ByteBufferList> toDecoder = listOfByteBufferList;
+            List<byte[]> toDecoder = listOfByteBufferList;
             Log.d("UnrealConnection", "decode pack of bytes: " + toDecoder.size());
-        listOfByteBufferList = new LinkedList<>();
+            listOfByteBufferList = new LinkedList<>();
         lock.unlock();
-        for (ByteBufferList byteBufferList : toDecoder) {
-            Log.d("UnrealConnection", "decode list: " + byteBufferList.size());
-            Log.d("UnrealConnection", "decode array: " + byteBufferList.getAllByteArray().length);
+        for (byte[] byteArray : toDecoder) {
+            //Log.d("UnrealConnection", "decode list: " + byteBufferList.size());
+            Log.d("UnrealConnection", "decode array: " + byteArray.length);
 
-            streamCommander.getStreamDecoder().encodeNextFrame(byteBufferList);
-            byteBufferList.recycle();
+            streamCommander.getStreamDecoder().encodeNextFrame(byteArray);
+            //byteBufferList.recycle();
         }
 
     }
@@ -84,7 +84,7 @@ public class UnrealConnection {
         }
         lock.lock();
             Log.d("UnrealConnection", "put bytes " + byteBufferList.size());
-            listOfByteBufferList.add(byteBufferList);
+            listOfByteBufferList.add(byteBufferList.getAllByteArray());
         lock.unlock();
     }
 
