@@ -115,7 +115,7 @@ void AJavaCommunication::connect(FString host) {
 
 	jstring j_host = javaEnvironment->NewStringUTF(TCHAR_TO_ANSI(*host));
 	javaEnvironment->CallVoidMethod(unrealConnection_obj, connectID, j_host);
-	javaEnvironment->DeleteLocalRef(j_host);
+	javaEnvironment->DeleteLocalRef(j_host); 
 #endif
 }
 

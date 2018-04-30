@@ -62,16 +62,15 @@ public class UnrealConnection {
         lock.lock();
             List<ByteBufferList> toDecoder = listOfByteBufferList;
             Log.d("UnrealConnection", "decode pack of bytes: " + toDecoder.size());
-            for (ByteBufferList byteBufferList : toDecoder) {
-                Log.d("UnrealConnection", "decode list: " + byteBufferList.size());
-                Log.d("UnrealConnection", "decode array: " + byteBufferList.getAllByteArray().length);
-
-                streamCommander.getStreamDecoder().encodeNextFrame(byteBufferList);
-                byteBufferList.recycle();
-            }
         listOfByteBufferList = new LinkedList<>();
         lock.unlock();
+        for (ByteBufferList byteBufferList : toDecoder) {
+            Log.d("UnrealConnection", "decode list: " + byteBufferList.size());
+            Log.d("UnrealConnection", "decode array: " + byteBufferList.getAllByteArray().length);
 
+            streamCommander.getStreamDecoder().encodeNextFrame(byteBufferList);
+            byteBufferList.recycle();
+        }
 
     }
 
@@ -83,8 +82,8 @@ public class UnrealConnection {
         if (byteBufferList == null) {
             return;
         }
-        Log.d("UnrealConnection", "put bytes " + byteBufferList.size());
         lock.lock();
+            Log.d("UnrealConnection", "put bytes " + byteBufferList.size());
             listOfByteBufferList.add(byteBufferList);
         lock.unlock();
     }
