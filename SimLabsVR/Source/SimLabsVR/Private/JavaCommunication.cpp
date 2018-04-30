@@ -100,7 +100,7 @@
 			javaEnvironment->CallVoidMethod(unrealConnection_obj, connectID, ipstring);
 			UE_LOG(LogTemp, Warning, TEXT("called connect"));
 			PRINT(TEXT("End init"));
-			javaEnvironment->DeleteLocalRef(ipstring);*/
+			javaEnvironment->DeleteLocalRef(ipstring); */
 		});
 		return JNI_OK;
 	#endif

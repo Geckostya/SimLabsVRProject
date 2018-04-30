@@ -24,15 +24,16 @@ public class UnrealConnection {
 
     public static native void dataCallBack();
 
-    public UnrealConnection(int textureDest, final int weight, final int height) {
+    public UnrealConnection(int textureDest, final int width, final int height) {
         BitmapRenderer btmRenderer = new BitmapRenderer(false);
         btmRenderer.updateFrameData(textureDest);
         final Surface surface = btmRenderer.getSurface();
-
+        Log.d("UnrealConnection", "Texture resource: " + textureDest);
+        Log.d("UnrealConnection", "Width: " + width + "; height: " + height);
         streamCommander = new StreamCommander(new Function0<StreamDecoder>() {
             @Override
             public StreamDecoder invoke() {
-                return new StreamDecoder(false, surface, weight, height);
+                return new StreamDecoder(false, surface, width, height);
             }
         }, this);
     }
@@ -61,12 +62,12 @@ public class UnrealConnection {
         }
         lock.lock();
             List<byte[]> toDecoder = listOfByteBufferList;
-            Log.d("UnrealConnection", "decode pack of bytes: " + toDecoder.size());
+           // Log.d("UnrealConnection", "decode pack of bytes: " + toDecoder.size());
             listOfByteBufferList = new LinkedList<>();
         lock.unlock();
         for (byte[] byteArray : toDecoder) {
             //Log.d("UnrealConnection", "decode list: " + byteBufferList.size());
-            Log.d("UnrealConnection", "decode array: " + byteArray.length);
+            //Log.d("UnrealConnection", "decode array: " + byteArray.length);
 
             streamCommander.getStreamDecoder().encodeNextFrame(byteArray);
             //byteBufferList.recycle();
@@ -83,7 +84,7 @@ public class UnrealConnection {
             return;
         }
         lock.lock();
-            Log.d("UnrealConnection", "put bytes " + byteBufferList.size());
+            //Log.d("UnrealConnection", "put bytes " + byteBufferList.size());
             listOfByteBufferList.add(byteBufferList.getAllByteArray());
         lock.unlock();
     }

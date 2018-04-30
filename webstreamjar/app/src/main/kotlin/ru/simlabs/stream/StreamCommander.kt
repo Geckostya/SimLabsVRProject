@@ -31,9 +31,7 @@ class StreamCommander constructor(fact: () -> StreamDecoder, unrealConnect: Unre
 //    }
 
     fun connect(address: String, onConnectionResult: (Boolean) -> Unit) {
-        Log.d(NAME, "I'm in the connect")
         if (isStreamConnected) return
-        Log.d(NAME, "I'm still in the connect")
 
         AsyncHttpClient.getDefaultInstance().websocket(address, null,
                 { exception, webSocket ->
@@ -47,10 +45,8 @@ class StreamCommander constructor(fact: () -> StreamDecoder, unrealConnect: Unre
                     isStreamConnected = true
                     streamDecoder = decoderFactory()
 
-                    Log.d(NAME, "I'm here! Look at me!")
-
                     webSocket.setStringCallback({ msg ->
-                        Log.d(NAME, "in string callback")
+                        //Log.d(NAME, "in string callback")
                         val list = msg.split(" ")
                         if (!list.isEmpty()) {
                             val head = Command.values()[parseInt(list[0])]
@@ -61,18 +57,17 @@ class StreamCommander constructor(fact: () -> StreamDecoder, unrealConnect: Unre
                     })
 
                     webSocket.setDataCallback { _, byteBufferList ->
-                        Log.d(NAME, "in data callback")
+                        //Log.d(NAME, "in data callback")
                         if (byteBufferList.isEmpty)
                             return@setDataCallback
                         UnrealConnection.dataCallBack()
-                        Log.d(NAME, "byteBufferList is not empty")
+                       // Log.d(NAME, "byteBufferList is not empty")
                         unrealConnection.putBytes(byteBufferList)
 //                        streamDecoder?.encodeNextFrame(byteBufferList)
                         byteBufferList.recycle()
                     }
 
                     streamDecoder?.start()
-                    Log.d(NAME, "I need to start a 'start'! Decoder != null is" + (streamDecoder != null))
 
                     webSocket.send("${Command.SET_CLIENT_TYPE.ordinal} ${ClientType.RawH264.ordinal}")
                     webSocket.send("${Command.SET_CLIENT_LIMITATIONS.ordinal} 1280 720 45")
