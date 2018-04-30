@@ -37,6 +37,7 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
     }
 
     fun encodeNextFrame(byteBuffer: ByteBufferList) {
+        if (byteBuffer.size() < 0) return
         val bytes = byteBuffer.allByteArray
         if (!verbose) Log.d(NAME, "Accepted: ${bytes.size}")
 

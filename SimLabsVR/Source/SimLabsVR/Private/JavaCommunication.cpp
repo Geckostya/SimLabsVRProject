@@ -95,12 +95,12 @@
 			disconnectID = javaEnvironment->GetMethodID(unrealConnection, "disconnect", "()V");
 			decodeNextFrameID = javaEnvironment->GetMethodID(unrealConnection, "decodeNextFrame", "()V");
 
-			char ip[256] = "ws://192.168.1.173";
+			/*char ip[256] = "ws://192.168.1.173";
 			jstring ipstring = javaEnvironment->NewStringUTF(ip);
 			javaEnvironment->CallVoidMethod(unrealConnection_obj, connectID, ipstring);
 			UE_LOG(LogTemp, Warning, TEXT("called connect"));
 			PRINT(TEXT("End init"));
-			javaEnvironment->DeleteLocalRef(ipstring);
+			javaEnvironment->DeleteLocalRef(ipstring);*/
 		});
 		return JNI_OK;
 	#endif
@@ -163,12 +163,12 @@ void AJavaCommunication::Tick(float DeltaTime)
 	#if PLATFORM_ANDROID
 		if (canSendByteBuffer)
 		{
-			ENQUEUE_UNIQUE_RENDER_COMMAND(AndroidSimLabsImageDecode,
-				{
+			ENQUEUE_UNIQUE_RENDER_COMMAND(AndroidSimLabsImageDecode, 
+				{ 
 					JNIEnv *javaEnvironment;
-			jvm->AttachCurrentThread(&javaEnvironment, NULL);
+					jvm->AttachCurrentThread(&javaEnvironment, NULL);
 
-			javaEnvironment->CallVoidMethod(unrealConnection_obj, decodeNextFrameID);
+					javaEnvironment->CallVoidMethod(unrealConnection_obj, decodeNextFrameID);
 				});
 		}
 	#endif
