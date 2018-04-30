@@ -18,6 +18,12 @@ public:
 	AJavaCommunication();
 	int initEnvironment();
 
+	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
+		void connect(FString host);
+
+	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
+		void disconnect();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

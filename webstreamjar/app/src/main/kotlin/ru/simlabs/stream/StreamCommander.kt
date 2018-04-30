@@ -11,13 +11,14 @@ import java.lang.Integer.parseInt
 
 fun Boolean.toInt() = if(this) 1 else 0
 
-class StreamCommander constructor(fact: () -> StreamDecoder) {
+class StreamCommander constructor(fact: () -> StreamDecoder, unrealConnect: UnrealConnection) {
     private val decoderFactory: () -> StreamDecoder = fact
-    private var streamDecoder : StreamDecoder? = null
+    private val unrealConnection: UnrealConnection = unrealConnect
     private val NAME = "Stream Commander"
     private var isStreamConnected = false
-
     private var webSocket: WebSocket? = null
+
+    var streamDecoder : StreamDecoder? = null
 
     var onNewFrame: ((String) -> Unit)? = null
 
@@ -63,9 +64,11 @@ class StreamCommander constructor(fact: () -> StreamDecoder) {
                         Log.d(NAME, "in data callback")
                         if (byteBufferList.isEmpty)
                             return@setDataCallback
+                        UnrealConnection.dataCallBack()
                         Log.d(NAME, "byteBufferList is not empty")
-                        streamDecoder?.encodeNextFrame(byteBufferList)
-                        byteBufferList.recycle()
+                        unrealConnection.putBytes(byteBufferList)
+//                        streamDecoder?.encodeNextFrame(byteBufferList)
+//                        byteBufferList.recycle()
                     }
 
                     streamDecoder?.start()

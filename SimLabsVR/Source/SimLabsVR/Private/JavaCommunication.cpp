@@ -17,8 +17,16 @@
 
 	#define LOG_TAG "MY_LOG" // Used to print log with __android_log_print
 
-	JNIEnv* javaEnvironment = NULL; // Will contain JNI when initialized
+
+	bool canSendByteBuffer = false;
+
 	UMediaTexture* mediaTexture;
+	JavaVM* jvm;
+	jobject unrealConnection_obj;
+
+	jmethodID decodeNextFrameID;
+	jmethodID connectID;
+	jmethodID disconnectID;
 #endif
 
 #if PLATFORM_ANDROID
@@ -36,6 +44,12 @@
 		GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, fString);
 		jenv->ReleaseStringUTFChars(str, nativeString);
 	}
+
+	JNI_METHOD void Java_ru_simlabs_stream_UnrealConnection_dataCallBack(JNIEnv* jenv, jclass clazz)
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("DECODE NEXT FRAME"));
+		canSendByteBuffer = true;
+	}
 #endif
 
 	int AJavaCommunication::initEnvironment()
@@ -45,41 +59,45 @@
 		//__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "### initEnvironment");  
 		
 		ENQUEUE_UNIQUE_RENDER_COMMAND(AndroidImageRender, {
-			javaEnvironment = FAndroidApplication::GetJavaEnv();
+			JNIEnv* javaEnvironment = FAndroidApplication::GetJavaEnv();
+			javaEnvironment->GetJavaVM(&jvm);
 
 			jclass testJNI_class = FAndroidApplication::FindJavaClass("ru/simlabs/stream/utils/TestJNI");
-			if (testJNI_class)
-				UE_LOG(LogTemp, Warning, TEXT("JNI Test class founded"))
-			else
+			if (!testJNI_class)
 				UE_LOG(LogTemp, Warning, TEXT("JNI Test class not founded"));
 
 			jclass unrealConnection = FAndroidApplication::FindJavaClass("ru/simlabs/stream/UnrealConnection");
-			if (unrealConnection)
-				UE_LOG(LogTemp, Warning, TEXT("class founded"))
-			else
+			if (!unrealConnection)
 				UE_LOG(LogTemp, Warning, TEXT("class not founded"));
 
 			jmethodID constructor = javaEnvironment->GetMethodID(unrealConnection, "<init>", "(III)V");
-			if (constructor)
-				UE_LOG(LogTemp, Warning, TEXT("constructor founded"));
+			if (!constructor)
+				UE_LOG(LogTemp, Warning, TEXT("constructor not founded"));
 			int textureResource = 0;
 			#if WITH_ENGINE
+				mediaTexture->InitializeTextureSink(
+					{ 1280, 720 },
+					{ 1280, 720 },
+					EMediaTextureSinkFormat::CharBGRA,
+					EMediaTextureSinkMode::Unbuffered
+				);
 				textureResource = *reinterpret_cast<int*>(mediaTexture->GetTextureSinkTexture()->GetNativeResource());
 			#elif
 				UE_LOG(LogTemp, Warning, TEXT("Without Engine"));
 			#endif
-			jobject unrealConnection_obj = javaEnvironment->NewObject(
-				unrealConnection, constructor, textureResource, mediaTexture->GetWidth(), mediaTexture->GetHeight()
+			unrealConnection_obj = javaEnvironment->NewGlobalRef(
+				javaEnvironment->NewObject(
+					unrealConnection, constructor, textureResource, mediaTexture->GetWidth(), mediaTexture->GetHeight()
+				)
 			);
-			if (unrealConnection_obj)
-				UE_LOG(LogTemp, Warning, TEXT("object created"));
-			jmethodID connect = javaEnvironment->GetMethodID(unrealConnection, "connect", "(Ljava/lang/String;)V");
-			if (connect)
-				UE_LOG(LogTemp, Warning, TEXT("connect method is founded"));
 
-			char ip[256] = "ws://192.168.1.173:9002";
+			connectID = javaEnvironment->GetMethodID(unrealConnection, "connect", "(Ljava/lang/String;)V");
+			disconnectID = javaEnvironment->GetMethodID(unrealConnection, "disconnect", "()V");
+			decodeNextFrameID = javaEnvironment->GetMethodID(unrealConnection, "decodeNextFrame", "()V");
+
+			char ip[256] = "ws://192.168.1.173";
 			jstring ipstring = javaEnvironment->NewStringUTF(ip);
-			javaEnvironment->CallVoidMethod(unrealConnection_obj, connect, ipstring);
+			javaEnvironment->CallVoidMethod(unrealConnection_obj, connectID, ipstring);
 			UE_LOG(LogTemp, Warning, TEXT("called connect"));
 			PRINT(TEXT("End init"));
 			javaEnvironment->DeleteLocalRef(ipstring);
@@ -87,6 +105,28 @@
 		return JNI_OK;
 	#endif
 	return 0;
+}
+
+void AJavaCommunication::connect(FString host) {
+#if PLATFORM_ANDROID
+	UE_LOG(LogTemp, Warning, TEXT("called connect"));
+	JNIEnv *javaEnvironment;
+	jvm->AttachCurrentThread(&javaEnvironment, NULL);
+
+	jstring j_host = javaEnvironment->NewStringUTF(TCHAR_TO_ANSI(*host));
+	javaEnvironment->CallVoidMethod(unrealConnection_obj, connectID, j_host);
+	javaEnvironment->DeleteLocalRef(j_host);
+#endif
+}
+
+void AJavaCommunication::disconnect() {
+#if PLATFORM_ANDROID
+	UE_LOG(LogTemp, Warning, TEXT("called disconnect"));
+	JNIEnv *javaEnvironment;
+	jvm->AttachCurrentThread(&javaEnvironment, NULL);
+
+	javaEnvironment->CallVoidMethod(unrealConnection_obj, disconnectID);
+#endif
 }
 
 // Sets default values 
@@ -120,4 +160,16 @@ void AJavaCommunication::BeginPlay()
 void AJavaCommunication::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	#if PLATFORM_ANDROID
+		if (canSendByteBuffer)
+		{
+			ENQUEUE_UNIQUE_RENDER_COMMAND(AndroidSimLabsImageDecode,
+				{
+					JNIEnv *javaEnvironment;
+			jvm->AttachCurrentThread(&javaEnvironment, NULL);
+
+			javaEnvironment->CallVoidMethod(unrealConnection_obj, decodeNextFrameID);
+				});
+		}
+	#endif
 }
