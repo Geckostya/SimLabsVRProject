@@ -21,6 +21,7 @@
 	bool canSendByteBuffer = false;
 
 	UMediaTexture* mediaTexture;
+	UMediaTexture* mediaTexture2;
 	JavaVM* jvm;
 	jobject unrealConnection_obj;
 
@@ -79,7 +80,7 @@
 					{ 1280, 720 },
 					{ 1280, 720 },
 					EMediaTextureSinkFormat::CharBGRA,
-					EMediaTextureSinkMode::Unbuffered
+					EMediaTextureSinkMode::Unbuffered //TODO think about it
 				);
 				textureResource = *reinterpret_cast<int*>(mediaTexture->GetTextureSinkTexture()->GetNativeResource());
 			#elif
@@ -107,7 +108,7 @@
 	return 0;
 }
 
-void AJavaCommunication::connect(FString host) {
+void AJavaCommunication::Connect(FString host) {
 #if PLATFORM_ANDROID
 	UE_LOG(LogTemp, Warning, TEXT("called connect"));
 	JNIEnv *javaEnvironment;
@@ -119,7 +120,7 @@ void AJavaCommunication::connect(FString host) {
 #endif
 }
 
-void AJavaCommunication::disconnect() {
+void AJavaCommunication::Disconnect() {
 #if PLATFORM_ANDROID
 	UE_LOG(LogTemp, Warning, TEXT("called disconnect"));
 	JNIEnv *javaEnvironment;
@@ -144,9 +145,36 @@ AJavaCommunication::AJavaCommunication()
 			#endif
 		}
 	}
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+
+	 //for (TActorIterator<AStaticMeshActor> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+	 //{
+	 	// Same as with the Object Iterator, access the subclass instance with the * or -> operators.
+	 	//AStaticMeshActor *Mesh = *ActorItr;
+	 	//UStaticMeshComponent* MeshComp = Mesh->GetStaticMeshComponent();
+	 	//TArray<UTexture*> TextureArray;
+	 	//MeshComp->GetUsedTextures(TextureArray, EMaterialQualityLevel::High);
+	 	//for (int i = 0; i < TextureArray.Num(); i++) {
+	 		//UE_LOG(LogTemp, Warning, TEXT("Mesh %s with texture %s"), Mesh->GetName(), TextureArray[i]->GetName());
+	 	//}
+	 //}
+ 	 //Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+}
+
+void AJavaCommunication::SetBox(UStaticMeshComponent *Mesh)
+{
+	TArray<UTexture*> TextureArray;
+	Mesh->GetUsedTextures(TextureArray, EMaterialQualityLevel::High);
+	if (TextureArray.Num() > 0)
+	{
+		UMediaTexture* texture = static_cast<UMediaTexture*>(TextureArray[0]);
+		GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, texture->GetName());
+
+		#if PLATFORM_ANDROID
+			::mediaTexture2 = texture;
+		#endif
+	}
 }
 
 // Called when the game starts or when spawned
@@ -163,8 +191,13 @@ void AJavaCommunication::Tick(float DeltaTime)
 	#if PLATFORM_ANDROID
 		if (canSendByteBuffer)
 		{
-			ENQUEUE_UNIQUE_RENDER_COMMAND(AndroidSimLabsImageDecode, 
-				{ 
+			ENQUEUE_UNIQUE_RENDER_COMMAND(AndroidSimLabsImageDecode,
+				{
+					/*UE_LOG(LogTemp, Warning, TEXT("Textures %d ?=? %d"),
+						*reinterpret_cast<int*>(mediaTexture->GetTextureSinkTexture()->GetNativeResource()),
+						*reinterpret_cast<int*>(mediaTexture2->GetTextureSinkTexture()->GetNativeResource())
+					);*/
+
 					JNIEnv *javaEnvironment;
 					jvm->AttachCurrentThread(&javaEnvironment, NULL);
 

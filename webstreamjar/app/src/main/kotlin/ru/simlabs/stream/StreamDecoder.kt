@@ -38,7 +38,7 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
 
     fun encodeNextFrame(bytes: ByteArray) {
         //val bytes = byteBuffer.allByteArray
-        if (!verbose) Log.d(NAME, "Accepted: ${bytes.size}")
+        if (!verbose) Log.d(NAME, "Accepted: ${bytes.size} and surface ${surface?.isValid}")
         if (bytes.size < 5) return
         if (!isConfigured && isKeyFrame(bytes)) return configureDecoder(bytes)
         feedDecoder(bytes)
@@ -70,7 +70,7 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
         buffer?.put(bytes)
 
         decoder?.queueInputBuffer(index, 0, size, time, 0)
-        if (!verbose) Log.d(NAME, "Queueing buffer: $index, Size: $size")
+        if (!verbose) Log.d(NAME, "Queueing buffer: $index, Size: $size  and surface ${surface?.isValid}")
     }
 
     private fun configureDecoder(keyFrame: ByteArray) {
@@ -90,7 +90,7 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
         }
 
         decoder?.configure(format, surface, null, 0)
-        surface = null
+        //surface = null
         decoder?.start()
 
         isConfigured = true
@@ -98,7 +98,7 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
     }
 
     override fun start() {
-        Log.d(NAME, "Decoder start");
+        Log.d(NAME, "Decoder start")
         if (running.get()) return
         running.set(true)
         super.start()
@@ -109,6 +109,9 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
 
         try {
             mainCycle(info)
+        } catch (e : Exception) {
+            Log.d(NAME, "Have an exception $e and ${e.message}  and surface ${surface?.isValid}")
+            e.printStackTrace()
         } finally {
             running.set(false)
             decoder?.stop()
@@ -130,7 +133,7 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
 
         val index = decoder?.dequeueOutputBuffer(info, maxTimeout)
         if (index != null && index >= 0) {
-            if (!verbose) Log.d(NAME, "Rendering: $index")
+            if (!verbose) Log.d(NAME, "Rendering: $index and surface ${surface?.isValid}")
             decoder?.releaseOutputBuffer(index, true)
         }
     }

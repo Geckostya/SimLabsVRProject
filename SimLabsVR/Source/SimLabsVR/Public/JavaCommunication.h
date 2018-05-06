@@ -19,10 +19,13 @@ public:
 	int initEnvironment();
 
 	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
-		void connect(FString host);
+		void SetBox(UStaticMeshComponent *Mesh);
 
 	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
-		void disconnect();
+		void Connect(FString host);
+
+	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
+		void Disconnect();
 
 protected:
 	// Called when the game starts or when spawned

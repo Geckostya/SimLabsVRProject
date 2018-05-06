@@ -1,5 +1,7 @@
 package ru.simlabs.stream;
 
+import android.graphics.SurfaceTexture;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.Surface;
 import com.koushikdutta.async.ByteBufferList;
@@ -15,6 +17,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class UnrealConnection {
+    private final SurfaceTexture surfaceTexture;
+    private final Surface surface;
     private StreamCommander streamCommander;
     @NotNull
     private List<byte[]> listOfByteBufferList = new LinkedList<>();
@@ -25,11 +29,22 @@ public class UnrealConnection {
     public static native void dataCallBack();
 
     public UnrealConnection(int textureDest, final int width, final int height) {
-        BitmapRenderer btmRenderer = new BitmapRenderer(false);
-        btmRenderer.updateFrameData(textureDest);
-        final Surface surface = btmRenderer.getSurface();
+//        BitmapRenderer btmRenderer = new BitmapRenderer(false);
+//        if (!btmRenderer.isValid()) {
+//            Log.e("UnrealConnection","Invalid bitmapRenderer");
+//        }
+//        boolean result = btmRenderer.updateFrameData(textureDest);
+//        Log.d("UnrealConnection", "Update Frame result is: " + result);
+
+//        surface = btmRenderer.getSurface();
+
+        surfaceTexture = new android.graphics.SurfaceTexture(textureDest);
+        //surfaceTexture.setOnFrameAvailableListener(this);
+        surface = new android.view.Surface(surfaceTexture);
+
         Log.d("UnrealConnection", "Texture resource: " + textureDest);
         Log.d("UnrealConnection", "Width: " + width + "; height: " + height);
+
         streamCommander = new StreamCommander(new Function0<StreamDecoder>() {
             @Override
             public StreamDecoder invoke() {
