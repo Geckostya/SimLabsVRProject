@@ -100,7 +100,7 @@
 			jstring ipstring = javaEnvironment->NewStringUTF(ip);
 			javaEnvironment->CallVoidMethod(unrealConnection_obj, connectID, ipstring);
 			UE_LOG(LogTemp, Warning, TEXT("called connect"));
-			PRINT(TEXT("End init"));
+			PRINT(TEXT("End init")); 
 			javaEnvironment->DeleteLocalRef(ipstring); */
 		});
 		return JNI_OK;
@@ -177,7 +177,7 @@ void AJavaCommunication::SetBox(UStaticMeshComponent *Mesh)
 	}
 }
 
-// Called when the game starts or when spawned
+// Called when the game starts or when spawned 
 void AJavaCommunication::BeginPlay()
 {
 	Super::BeginPlay();
@@ -195,7 +195,7 @@ void AJavaCommunication::Tick(float DeltaTime)
 				{
 					/*UE_LOG(LogTemp, Warning, TEXT("Textures %d ?=? %d"),
 						*reinterpret_cast<int*>(mediaTexture->GetTextureSinkTexture()->GetNativeResource()),
-						*reinterpret_cast<int*>(mediaTexture2->GetTextureSinkTexture()->GetNativeResource())
+						*reinterpret_cast<int*>(mediaTexture2->GetTextureSinkTexture()->GetNativeResource()) 
 					);*/
 
 					JNIEnv *javaEnvironment;
