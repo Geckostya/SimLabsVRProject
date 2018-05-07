@@ -70,7 +70,7 @@ class StreamCommander constructor(fact: () -> StreamDecoder, unrealConnect: Unre
                     streamDecoder?.start()
 
                     webSocket.send("${Command.SET_CLIENT_TYPE.ordinal} ${ClientType.RawH264.ordinal}")
-                    webSocket.send("${Command.SET_CLIENT_LIMITATIONS.ordinal} 1280 720 45")
+                    webSocket.send("${Command.SET_CLIENT_LIMITATIONS.ordinal} 1920 1280 45")
                     webSocket.send("${Command.SET_CLIENT_RESOLUTION.ordinal} ${streamDecoder?.width} ${streamDecoder?.height}")
                     activatePolicy(StreamPolicy.SMOOTH)
                     onConnectionResult(true)

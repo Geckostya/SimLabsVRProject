@@ -77,8 +77,8 @@
 			int textureResource = 0;
 			#if WITH_ENGINE
 				mediaTexture->InitializeTextureSink(
-					{ 1280, 720 },
-					{ 1280, 720 },
+					{ 1920, 1280 },
+					{ 1920, 1280 },
 					EMediaTextureSinkFormat::CharBGRA,
 					EMediaTextureSinkMode::Unbuffered //TODO think about it
 				);
