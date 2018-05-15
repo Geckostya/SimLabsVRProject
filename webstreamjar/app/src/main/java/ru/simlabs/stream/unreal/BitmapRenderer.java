@@ -1,9 +1,9 @@
-package ru.simlabs.stream;
+package ru.simlabs.stream.unreal;
 
 import android.opengl.*;
 import android.util.Log;
 
-class BitmapRenderer
+public class BitmapRenderer
         implements android.graphics.SurfaceTexture.OnFrameAvailableListener {
     private java.nio.Buffer mFrameData = null;
 //    private int mLastFramePosition = -1;

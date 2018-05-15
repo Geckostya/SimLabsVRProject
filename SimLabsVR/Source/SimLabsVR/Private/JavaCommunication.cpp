@@ -11,23 +11,7 @@
 #define PRINT(t) GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, t);
 
 #if PLATFORM_ANDROID
-	#include "../../../Core/Public/Android/AndroidApplication.h"
-	#include "../../../Launch/Public/Android/AndroidJNI.h"
-	#include <android/log.h>
-
-	#define LOG_TAG "MY_LOG" // Used to print log with __android_log_print
-
-
-	bool canSendByteBuffer = false;
-
 	UMediaTexture* mediaTexture;
-	UMediaTexture* mediaTexture2;
-	JavaVM* jvm;
-	jobject unrealConnection_obj;
-
-	jmethodID decodeNextFrameID;
-	jmethodID connectID;
-	jmethodID disconnectID;
 #endif
 
 #if PLATFORM_ANDROID
@@ -37,96 +21,20 @@
 		//Do nothing =(
 		PRINT(TEXT("tried to call native bitmapRenderer method"));
 	}
-
-	JNI_METHOD void Java_ru_simlabs_stream_UnrealConnection_printToScreen(JNIEnv* jenv, jobject thiz, jstring str)
-	{
-		const char *nativeString = jenv->GetStringUTFChars(str, JNI_FALSE);
-		FString fString(nativeString);
-		GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, fString);
-		jenv->ReleaseStringUTFChars(str, nativeString);
-	}
-
-	JNI_METHOD void Java_ru_simlabs_stream_UnrealConnection_dataCallBack(JNIEnv* jenv, jclass clazz)
-	{
-		//UE_LOG(LogTemp, Warning, TEXT("DECODE NEXT FRAME"));
-		canSendByteBuffer = true;
-	}
 #endif
 
-	int AJavaCommunication::initEnvironment()
-	{
-		UE_LOG(LogTemp, Warning, TEXT("BEFORE ANDROID"));
-#if PLATFORM_ANDROID
-		//__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, "### initEnvironment");  
-		
-		ENQUEUE_UNIQUE_RENDER_COMMAND(AndroidImageRender, {
-			JNIEnv* javaEnvironment = FAndroidApplication::GetJavaEnv();
-			javaEnvironment->GetJavaVM(&jvm);
-
-			jclass testJNI_class = FAndroidApplication::FindJavaClass("ru/simlabs/stream/utils/TestJNI");
-			if (!testJNI_class)
-				UE_LOG(LogTemp, Warning, TEXT("JNI Test class not founded"));
-
-			jclass unrealConnection = FAndroidApplication::FindJavaClass("ru/simlabs/stream/UnrealConnection");
-			if (!unrealConnection)
-				UE_LOG(LogTemp, Warning, TEXT("class not founded"));
-
-			jmethodID constructor = javaEnvironment->GetMethodID(unrealConnection, "<init>", "(III)V");
-			if (!constructor)
-				UE_LOG(LogTemp, Warning, TEXT("constructor not founded"));
-			int textureResource = 0;
-			#if WITH_ENGINE
-				mediaTexture->InitializeTextureSink(
-					{ 1920, 1280 },
-					{ 1920, 1280 },
-					EMediaTextureSinkFormat::CharBGRA,
-					EMediaTextureSinkMode::Unbuffered //TODO think about it
-				);
-				textureResource = *reinterpret_cast<int*>(mediaTexture->GetTextureSinkTexture()->GetNativeResource());
-			#elif
-				UE_LOG(LogTemp, Warning, TEXT("Without Engine"));
-			#endif
-			unrealConnection_obj = javaEnvironment->NewGlobalRef(
-				javaEnvironment->NewObject(
-					unrealConnection, constructor, textureResource, mediaTexture->GetWidth(), mediaTexture->GetHeight()
-				)
-			);
-
-			connectID = javaEnvironment->GetMethodID(unrealConnection, "connect", "(Ljava/lang/String;)V");
-			disconnectID = javaEnvironment->GetMethodID(unrealConnection, "disconnect", "()V");
-			decodeNextFrameID = javaEnvironment->GetMethodID(unrealConnection, "decodeNextFrame", "()V");
-
-			/*char ip[256] = "ws://192.168.1.173";
-			jstring ipstring = javaEnvironment->NewStringUTF(ip);
-			javaEnvironment->CallVoidMethod(unrealConnection_obj, connectID, ipstring);
-			UE_LOG(LogTemp, Warning, TEXT("called connect"));
-			PRINT(TEXT("End init")); 
-			javaEnvironment->DeleteLocalRef(ipstring); */
-		});
-		return JNI_OK;
-	#endif
-	return 0;
-}
 
 void AJavaCommunication::Connect(FString host) {
 #if PLATFORM_ANDROID
 	UE_LOG(LogTemp, Warning, TEXT("called connect"));
-	JNIEnv *javaEnvironment;
-	jvm->AttachCurrentThread(&javaEnvironment, NULL);
-
-	jstring j_host = javaEnvironment->NewStringUTF(TCHAR_TO_ANSI(*host));
-	javaEnvironment->CallVoidMethod(unrealConnection_obj, connectID, j_host);
-	javaEnvironment->DeleteLocalRef(j_host); 
+	StreamCommander->Connect(host.Append(TEXT(":9002")));
 #endif
 }
 
 void AJavaCommunication::Disconnect() {
 #if PLATFORM_ANDROID
 	UE_LOG(LogTemp, Warning, TEXT("called disconnect"));
-	JNIEnv *javaEnvironment;
-	jvm->AttachCurrentThread(&javaEnvironment, NULL);
-
-	javaEnvironment->CallVoidMethod(unrealConnection_obj, disconnectID);
+	StreamCommander->Disconnect(); 
 #endif
 }
 
@@ -146,63 +54,38 @@ AJavaCommunication::AJavaCommunication()
 		}
 	}
 
-	 //for (TActorIterator<AStaticMeshActor> ActorItr(GetWorld()); ActorItr; ++ActorItr)
-	 //{
-	 	// Same as with the Object Iterator, access the subclass instance with the * or -> operators.
-	 	//AStaticMeshActor *Mesh = *ActorItr;
-	 	//UStaticMeshComponent* MeshComp = Mesh->GetStaticMeshComponent();
-	 	//TArray<UTexture*> TextureArray;
-	 	//MeshComp->GetUsedTextures(TextureArray, EMaterialQualityLevel::High);
-	 	//for (int i = 0; i < TextureArray.Num(); i++) {
-	 		//UE_LOG(LogTemp, Warning, TEXT("Mesh %s with texture %s"), Mesh->GetName(), TextureArray[i]->GetName());
-	 	//}
-	 //}
- 	 //Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+#if PLATFORM_ANDROID
+	// 	UE_LOG(LogTemp, Warning, TEXT("Before creating TextureUpdater!"));
+	TextureUpdater = new SimlabsStream::FAndroidMediaTextureUpdater(1920, 1280);
+	// 	UE_LOG(LogTemp, Warning, TEXT("Before InitTexture!"));
+	TextureUpdater->InitTexture(::mediaTexture);
+
+	// 	UE_LOG(LogTemp, Warning, TEXT("Before creating StreamCommander!"));
+	StreamCommander = new SimlabsStream::FAndroidStreamCommander(TextureUpdater);
+
+#endif
+
 	PrimaryActorTick.bCanEverTick = true;
 
 }
 
 void AJavaCommunication::SetBox(UStaticMeshComponent *Mesh)
 {
-	TArray<UTexture*> TextureArray;
-	Mesh->GetUsedTextures(TextureArray, EMaterialQualityLevel::High);
-	if (TextureArray.Num() > 0)
-	{
-		UMediaTexture* texture = static_cast<UMediaTexture*>(TextureArray[0]);
-		GEngine->AddOnScreenDebugMessage(-1, 200, FColor::Green, texture->GetName());
-
-		#if PLATFORM_ANDROID
-			::mediaTexture2 = texture;
-		#endif
-	}
+	
 }
 
 // Called when the game starts or when spawned 
 void AJavaCommunication::BeginPlay()
 {
 	Super::BeginPlay();
-	initEnvironment();
 }
 
 // Called every frame
 void AJavaCommunication::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	#if PLATFORM_ANDROID
-		if (canSendByteBuffer)
-		{
-			ENQUEUE_UNIQUE_RENDER_COMMAND(AndroidSimLabsImageDecode,
-				{
-					/*UE_LOG(LogTemp, Warning, TEXT("Textures %d ?=? %d"),
-						*reinterpret_cast<int*>(mediaTexture->GetTextureSinkTexture()->GetNativeResource()),
-						*reinterpret_cast<int*>(mediaTexture2->GetTextureSinkTexture()->GetNativeResource()) 
-					);*/
-
-					JNIEnv *javaEnvironment;
-					jvm->AttachCurrentThread(&javaEnvironment, NULL);
-
-					javaEnvironment->CallVoidMethod(unrealConnection_obj, decodeNextFrameID);
-				});
-		}
-	#endif
+#if PLATFORM_ANDROID
+		UE_LOG(LogTemp, Warning, TEXT("in Tick"));
+		TextureUpdater->UpdateTexture();
+#endif
 }

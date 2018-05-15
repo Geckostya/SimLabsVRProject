@@ -1,25 +1,28 @@
 #pragma once
 
+#include "CoreMinimal.h"
+
 namespace SimlabsStream
 { 
 
 
-struct IReceiver
+struct IStreamCommander
 {
-    virtual void ~IReceiver() = default;
+    virtual ~IStreamCommander() = default;
     
-    virtual void connect() = 0;
-    virtual void disconnect() = 0;
+    virtual void Connect(const FString &host) = 0;
+    virtual void Disconnect() = 0;
 };
 
-struct IDecoder
+struct IMediaTextureUpdater
 {
-    virtual void ~IDecoder() = default;
-    
+    virtual ~IMediaTextureUpdater() = default;
+	
+	virtual void UpdateTexture() = 0;
 };
 
-IReceiver *CreateReceiver(/*decoder*/);
+//IStreamCommander *CreateStreamCommander(/*decoder*/);
 
-IDecoder *CreateDecoder(/*texturesink*/);
+//IMediaTextureUpdater *CreateMediaTextureUpdater(/*texturesink*/);
 
 } // namespace SimlabsStream

@@ -3,6 +3,12 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+
+#if PLATFORM_ANDROID
+#include "Android/AndroidMediaTextureUpdater.h"
+#include "Android/AndroidStreamCommander.h"
+#endif
+
 #include "JavaCommunication.generated.h"
 
 UCLASS()
@@ -11,12 +17,13 @@ class SIMLABSVR_API AJavaCommunication : public AActor
 	GENERATED_BODY()
 
 private:
-	int iTextureResource = 0;
-	
+	#if PLATFORM_ANDROID
+	SimlabsStream::FAndroidMediaTextureUpdater *TextureUpdater;
+	SimlabsStream::FAndroidStreamCommander *StreamCommander;
+#endif
 public:	
 	// Sets default values for this actor's properties
 	AJavaCommunication();
-	int initEnvironment();
 
 	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
 		void SetBox(UStaticMeshComponent *Mesh);
