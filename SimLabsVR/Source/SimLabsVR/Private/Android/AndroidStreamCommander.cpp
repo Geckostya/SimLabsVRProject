@@ -9,11 +9,6 @@ IStreamCommander *CreateStreamCommander(IMediaTextureUpdater *TextureUpdater)
 {
 	return new FAndroidStreamCommander(reinterpret_cast<FAndroidMediaTextureUpdater*>(TextureUpdater));
 }
-#else
-IStreamCommander *CreateStreamCommander(IMediaTextureUpdater *TextureUpdater)
-{
-	return nullptr;
-}
 #endif
 
 FAndroidStreamCommander::FAndroidStreamCommander(FAndroidMediaTextureUpdater* MediaTextureUpdater)

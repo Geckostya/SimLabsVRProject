@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "MediaTexture.h"
-
 namespace SimlabsStream
 { 
 
@@ -27,10 +26,5 @@ public:
 IStreamCommander *CreateStreamCommander(IMediaTextureUpdater *TextureUpdater);
 
 IMediaTextureUpdater *CreateMediaTextureUpdater(UMediaTexture *MediaTexture,  int width, int height);
-
-//#if (!PLATFORM_ANDROID)
-////IStreamCommander *CreateStreamCommander(IMediaTextureUpdater *TextureUpdater) { return nullptr; }
-////IMediaTextureUpdater *CreateMediaTextureUpdater(UMediaTexture *MediaTexture, int width, int height) { return nullptr; }
-//#endif
 
 } // namespace SimlabsStream

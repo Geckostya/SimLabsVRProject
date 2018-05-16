@@ -14,12 +14,29 @@ class SIMLABSVR_API AStreamController : public AActor
 private:
 	SimlabsStream::IMediaTextureUpdater *TextureUpdater;
 	SimlabsStream::IStreamCommander *StreamCommander;
+
+public:
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Simlabs Stream")
+		UMediaTexture* MediaTexture;
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Simlabs Stream")
+		int textureWidth;
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Simlabs Stream")
+		int textureHeight;
+
 public:	
 	// Sets default values for this actor's properties
 	AStreamController();
+	
+	UFUNCTION(BlueprintCallable, Category = "Simlabs Stream")
+		virtual void Init(UMediaTexture* NewMediaTexture, int width, int height);
+
+	UFUNCTION(BlueprintCallable, Category = "Simlabs Stream")
+		virtual void Connect(FString Host, FString Port);
+
+	UFUNCTION(BlueprintCallable, Category = "Simlabs Stream")
+		virtual void Disconnect();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	virtual void BeginDestroy() override;
 

@@ -18,13 +18,13 @@ public:
 	// Sets default values for this actor's properties
 	AJavaCommunication();
 
-	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
+	UFUNCTION(BlueprintCallable, Category = "Simlabs Stream")
 		void SetBox(UStaticMeshComponent *Mesh);
 
-	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
+	UFUNCTION(BlueprintCallable, Category = "Simlabs Stream")
 		void Connect(FString host);
 
-	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
+	UFUNCTION(BlueprintCallable, Category = "Simlabs Stream")
 		void Disconnect();
 
 protected:

@@ -12,11 +12,6 @@ IMediaTextureUpdater *CreateMediaTextureUpdater(UMediaTexture *MediaTexture, int
 	TextureUpdater->InitTexture(MediaTexture);
 	return TextureUpdater;
 }
-#else
-IMediaTextureUpdater *CreateMediaTextureUpdater(UMediaTexture *MediaTexture, int width, int height)
-{
-	return nullptr;
-}
 #endif
 
 FAndroidMediaTextureUpdater::FAndroidMediaTextureUpdater(int width, int height)
