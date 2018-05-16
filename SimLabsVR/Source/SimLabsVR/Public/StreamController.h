@@ -2,36 +2,31 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "SimlabsStream.h"
-#include "JavaCommunication.generated.h"
+#include "StreamController.generated.h"
 
 UCLASS()
-class SIMLABSVR_API AJavaCommunication : public AActor
+class SIMLABSVR_API AStreamController : public AActor
 {
 	GENERATED_BODY()
-
 private:
 	SimlabsStream::IMediaTextureUpdater *TextureUpdater;
 	SimlabsStream::IStreamCommander *StreamCommander;
 public:	
 	// Sets default values for this actor's properties
-	AJavaCommunication();
-
-	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
-		void SetBox(UStaticMeshComponent *Mesh);
-
-	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
-		void Connect(FString host);
-
-	UFUNCTION(BlueprintCallable, Category = "SimLabsServer")
-		void Disconnect();
+	AStreamController();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void BeginDestroy() override;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	
+	
 };

@@ -2,7 +2,22 @@
 #include "Engine.h"
 #include "RenderingThread.h"
 
-using namespace SimlabsStream;
+namespace SimlabsStream
+{
+
+#if PLATFORM_ANDROID
+IMediaTextureUpdater *CreateMediaTextureUpdater(UMediaTexture *MediaTexture, int width, int height)
+{
+	auto* TextureUpdater = new FAndroidMediaTextureUpdater(width, height);
+	TextureUpdater->InitTexture(MediaTexture);
+	return TextureUpdater;
+}
+#else
+IMediaTextureUpdater *CreateMediaTextureUpdater(UMediaTexture *MediaTexture, int width, int height)
+{
+	return nullptr;
+}
+#endif
 
 FAndroidMediaTextureUpdater::FAndroidMediaTextureUpdater(int width, int height)
 	: FJavaClassObject(FName("ru/simlabs/stream/unreal/AndroidMediaTextureUpdater"), "(II)V", width, height)
@@ -36,10 +51,12 @@ void FAndroidMediaTextureUpdater::SetTextureID(int textureID) {
 }
 
 void FAndroidMediaTextureUpdater::UpdateTexture() {
-	ENQUEUE_UNIQUE_RENDER_COMMAND_ONEPARAMETER(SimlabsStreamAndroidDecoderUpdateTexture, 
-	FAndroidMediaTextureUpdater*, This, this,
+	ENQUEUE_UNIQUE_RENDER_COMMAND_ONEPARAMETER(SimlabsStreamAndroidDecoderUpdateTexture,
+		FAndroidMediaTextureUpdater*, This, this,
 		{
 			This->CallMethod<void>(This->UpdateTextureMethod);
 		}
 	);
+}
+
 }

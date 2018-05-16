@@ -15,11 +15,11 @@ JNI_METHOD void Java_ru_simlabs_stream_unreal_AndroidOnConnectionResult_resultRe
 }
 #endif
 
-using namespace SimlabsStream;
+namespace SimlabsStream
+{
 
 bool FAndroidOnConnectionResult::isPresent = false;
 bool FAndroidOnConnectionResult::lastResult = false;
-
 
 FAndroidOnConnectionResult::FAndroidOnConnectionResult()
 	: FJavaClassObject(FName("ru/simlabs/stream/unreal/AndroidOnConnectionResult"), "()V")
@@ -41,4 +41,6 @@ bool FAndroidOnConnectionResult::GetLastResult()
 bool FAndroidOnConnectionResult::IsPresent()
 {
 	return isPresent;
+}
+
 }
