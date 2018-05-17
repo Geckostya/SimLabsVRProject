@@ -26,7 +26,7 @@ public:
 	void Connect(const FString &Host) override;
 	void Connect(const FString &Host, jobject OnConnectionResult);
 	void Disconnect() override;
-	bool GetConnected();
+	bool IsConnected() override;
 	void UseDebugFrame(bool use);
 	void UseAutoBitrate(bool use);
 	void ChangeSurface(jobject Surface, int width, int height);

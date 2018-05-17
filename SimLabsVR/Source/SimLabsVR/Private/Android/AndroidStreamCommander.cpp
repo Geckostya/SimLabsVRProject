@@ -37,7 +37,7 @@ void FAndroidStreamCommander::Disconnect()
 	CallMethod<void>(DisconnectMethod);
 }
 
-bool FAndroidStreamCommander::GetConnected()
+bool FAndroidStreamCommander::IsConnected()
 {
 	return CallMethod<bool>(GetConnectedMethod);
 }

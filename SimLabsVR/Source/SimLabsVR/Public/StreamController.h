@@ -36,6 +36,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Simlabs Stream")
 		virtual void Disconnect();
 
+	UFUNCTION(BlueprintCallable, Category = "Simlabs Stream")
+		virtual bool IsConnected();
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void BeginDestroy() override;

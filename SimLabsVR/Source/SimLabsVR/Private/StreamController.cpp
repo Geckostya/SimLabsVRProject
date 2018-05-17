@@ -30,6 +30,12 @@ void AStreamController::Disconnect() {
 		StreamCommander->Disconnect();
 }
 
+bool AStreamController::IsConnected() {
+	if (StreamCommander)
+		return StreamCommander->IsConnected();
+	return false;
+}
+
 void AStreamController::BeginPlay()
 {
 	Super::BeginPlay();

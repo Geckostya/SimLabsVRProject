@@ -12,6 +12,7 @@ class FDummyStreamCommander
 public:
 	void Connect(const FString &Host) override;
 	void Disconnect() override;
+	bool IsConnected() override;
 };
 
 

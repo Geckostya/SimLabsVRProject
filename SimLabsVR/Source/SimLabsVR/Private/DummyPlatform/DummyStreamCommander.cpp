@@ -16,4 +16,9 @@ void SimlabsStream::FDummyStreamCommander::Connect(const FString & Host)
 void FDummyStreamCommander::Disconnect()
 {}
 
+bool FDummyStreamCommander::IsConnected()
+{
+	return false;
+}
+
 }

@@ -13,6 +13,7 @@ public:
     
     virtual void Connect(const FString &host) = 0;
     virtual void Disconnect() = 0;
+	virtual bool IsConnected() = 0;
 };
 
 class IMediaTextureUpdater
