@@ -6,12 +6,12 @@
 // Sets default values
 AStreamController::AStreamController()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 }
 
 void AStreamController::Init(UMediaTexture* NewMediaTexture, int width, int height) {
 	MediaTexture = NewMediaTexture;
+	MediaTexture->Filter = TextureFilter::TF_Nearest;
 	textureWidth = width;
 	textureHeight = height;
 	TextureUpdater = SimlabsStream::CreateMediaTextureUpdater(MediaTexture, textureWidth, textureHeight);
@@ -40,6 +40,7 @@ void AStreamController::BeginPlay()
 {
 	Super::BeginPlay();
 	if (MediaTexture) {
+		MediaTexture->Filter = TextureFilter::TF_Nearest;
 		TextureUpdater = SimlabsStream::CreateMediaTextureUpdater(MediaTexture, textureWidth, textureHeight);
 		StreamCommander = SimlabsStream::CreateStreamCommander(TextureUpdater);
 	}

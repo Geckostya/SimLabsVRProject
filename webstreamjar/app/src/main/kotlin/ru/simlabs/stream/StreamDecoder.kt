@@ -38,7 +38,7 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
 
     fun encodeNextFrame(byteBuffer: ByteBufferList) {
         val bytes = byteBuffer.allByteArray
-        if (!verbose) Log.d(NAME, "Accepted: ${bytes.size} and surface ${surface?.isValid}")
+        if (verbose) Log.d(NAME, "Accepted: ${bytes.size}")
         if (bytes.size < 5) return
         if (!isConfigured && isKeyFrame(bytes)) return configureDecoder(bytes)
         feedDecoder(bytes)
@@ -70,7 +70,7 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
         buffer?.put(bytes)
 
         decoder?.queueInputBuffer(index, 0, size, time, 0)
-        if (!verbose) Log.d(NAME, "Queueing buffer: $index, Size: $size  and surface ${surface?.isValid}")
+        if (verbose) Log.d(NAME, "Queueing buffer: $index, Size: $size")
     }
 
     private fun configureDecoder(keyFrame: ByteArray) {
@@ -110,7 +110,7 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
         try {
             mainCycle(info)
         } catch (e : Exception) {
-            Log.d(NAME, "Have an exception $e and ${e.message}  and surface ${surface?.isValid}")
+            Log.d(NAME, "Have an exception $e and ${e.message}")
             e.printStackTrace()
         } finally {
             running.set(false)
@@ -133,7 +133,7 @@ class StreamDecoder(val verbose: Boolean, private var surface: Surface?, private
 
         val index = decoder?.dequeueOutputBuffer(info, maxTimeout)
         if (index != null && index >= 0) {
-            if (!verbose) Log.d(NAME, "Rendering: $index and surface ${surface?.isValid}")
+            if (verbose) Log.d(NAME, "Rendering: $index")
             decoder?.releaseOutputBuffer(index, true)
         }
     }

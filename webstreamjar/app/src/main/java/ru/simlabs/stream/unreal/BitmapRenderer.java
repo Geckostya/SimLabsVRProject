@@ -405,7 +405,6 @@ public class BitmapRenderer
             // time we return nothing to indicate that there was nothing
             // new to return. The media player deals with this by keeping
             // the last frame around and using that for rendering.
-            Log.d("BitmapRenderer", "mFrameAvailable = false");
             return false;
         }
         mFrameAvailable = false;
@@ -414,7 +413,6 @@ public class BitmapRenderer
 //        mLastFramePosition = current_frame_position;
         if (null == mSurfaceTexture) {
             // Can't update if there's no surface to update into.
-            Log.d("BitmapRenderer", "mSurfaceTexture = false");
             return false;
         }
 
