@@ -1,9 +1,11 @@
 # SimLabsVRProject
-Цель проекта: создать приложение под андроид в UE4 для стримминга 360 видео с сервера
+Project goal: Create a client application for android powered by Unreal Engine 4 for recieving from server and show 360° image in realtime in VR.
 
+* [video demo]
 * [Рессуры]
 * [Trello]
 
+[video demo]: https://www.youtube.com/watch?v=IvJK6Ctb-pI
 [Рессуры]: https://drive.google.com/open?id=1BLtdeeRkNf2AWwi1wGqsxJ_Ba_zmWvym
 [Trello]: https://trello.com/b/vu7LExDI/simlabsvrproject
 
