@@ -1,5 +1,5 @@
 # SimLabsVRProject
-Project goal: Create a client application for android powered by Unreal Engine 4 for recieving from server and show 360° image in realtime in VR.
+Projects goal: Create a client application for android, that receives a 360° image from a server then shows it in VR and is powered by Unreal Engine 4.
 
 * [video demo]
 * [Рессуры]
